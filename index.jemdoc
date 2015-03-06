@@ -1,0 +1,9 @@
+# jemdoc: menu{MENU}{index.html}
+= Daniel Nguyen
+
+
+If the first line of the fiel starts with +\# jemdoc+, special functions like menus will be used.
+
+
+== Example
+Here are some *text* /features/. I could [http://cvxmod.net/ link somewhere] or insert a raw link to another page like [download.html[. I could use +monospace+, too.

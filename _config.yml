@@ -1,6 +1,0 @@
-default:
-  -
-    scope:
-      path: ""
-    values:
-      author: "Daniel Nguyen"
