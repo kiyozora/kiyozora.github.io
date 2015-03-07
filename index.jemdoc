@@ -1,9 +1,20 @@
 # jemdoc: menu{MENU}{index.html}
 = Daniel Nguyen
 
+~~~
+{}{img_left}{profile.jpg}{A picture of me}{240px}{320px}{}
+UC Berkeley, Class of 2017 \n
+Departments of Computer Science, Linguistics, Japanese, Korean
+~~~
 
-If the first line of the fiel starts with +\# jemdoc+, special functions like menus will be used.
+== About
 
+I am a sophomore doing a triple major in Computer Science, Linguistics, and Japanese, with a Korean minor at UC Berkeley.
 
-== Example
-Here are some *text* /features/. I could [http://cvxmod.net/ link somewhere] or insert a raw link to another page like [download.html[. I could use +monospace+, too.
+I teach CS61B (Data Structures) as an Undergraduate Student Instructor under Professor Josh Hug.
+
+My focuses range far and wide. On the CS side, I am mainly interested in optimization and algorithms. I also love good wholesome CS theory. My linguistic passions lie in syntax, especially those in East Asian languages like Korean and Japanese. I am an avid fan of modern Japanese literature. How do all of these things tie together? Somehow they do.
+
+When I have free time, I enjoy listening to K-pop, dancing, developing new teaching materials, spending times with my friends, and playing video games.
+
+I am always looking for ways to learn more and improve myself and inspire others.
