@@ -3,6 +3,11 @@
 = CS61B-Data Structures, Spring 2015
 
 == Git for those who hate Git
+Git is hard. Or at least it can be. Basically, the more that you use it and get used to it, the better you can be. I'm going to make an attempt at doing a metaphor for Git.
+
+You can think of what Git is doing is that it's copying your files and storing it in a place that is hidden from you. It might make more sense when you have an example.
+
+ 
 
 == Inheritance
 
