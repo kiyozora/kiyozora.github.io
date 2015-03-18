@@ -32,10 +32,35 @@ try {
 <div id="toptitle">
 <h1>CS61B-Data Structures, Spring 2015</h1>
 </div>
-<h2>Git for those who hate Git</h2>
-<p>Git is hard. Or at least it can be. Basically, the more that you use it and get used to it, the better you can be. I'm going to make an attempt at doing a metaphor for Git.</p>
-<p>You can think of what Git is doing is that it's copying your files and storing it in a place that is hidden from you. It might make more sense when you have an example.</p>
 <h2>Inheritance</h2>
+<p>Java is an object oriented programming language. What does that mean? We have classes, which define a type of structure. We have things called objects, which are basically containers of data. All objects are an instance of some class. They have fields, which contain data and can interact with each other through methods.</p>
+<p>So what is inheritance? Inheritance is a hierarchy of objects essentially. Basically, it defines a is-a relationship. So a simple example would be like this.</p>
+<p>Let's say we have some class called Animal. Then we can have a subclass called Dog that inherits from Animal. All Dogs are Animals. Not all Animals are Dog. Anything an Animal can do, a Dog can go and better. So let's say we have these snippets of Java code</p>
+<div class="codeblock">
+<div class="code"><pre class="prettyprint">
+public class Animal {
+	public int legs;
+
+	public void move() {
+		System.out.println("Animals move.");
+	}
+
+}
+
+public class Dog extends Animal {
+	public String breed;
+
+	public void move() {
+		System.out.println("Dogs can move too.");
+	}
+
+	public void bark() {
+		System.out.println("Hi I'm a " + breed);
+	}
+
+}
+
+</pre></div></div>
 <h2>The Java Compiler and Casting</h2>
 <h2>Abstract Data Types (ADTs)</h2>
 <h2>Encapsulation</h2>
@@ -114,7 +139,7 @@ public class VesselHelper {
 <p>Coming after Tuesday's (3/10) discussion section. Probably the night of. If it's not, please bother me to update.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-03-14 02:54:39 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-03-17 20:03:32 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>

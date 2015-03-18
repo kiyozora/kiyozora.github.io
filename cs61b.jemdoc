@@ -2,14 +2,39 @@
 # jemdoc: analytics{UA-60586521-1}
 = CS61B-Data Structures, Spring 2015
 
-== Git for those who hate Git
-Git is hard. Or at least it can be. Basically, the more that you use it and get used to it, the better you can be. I'm going to make an attempt at doing a metaphor for Git.
-
-You can think of what Git is doing is that it's copying your files and storing it in a place that is hidden from you. It might make more sense when you have an example.
-
- 
-
 == Inheritance
+Java is an object oriented programming language. What does that mean? We have classes, which define a type of structure. We have things called objects, which are basically containers of data. All objects are an instance of some class. They have fields, which contain data and can interact with each other through methods.
+
+So what is inheritance? Inheritance is a hierarchy of objects essentially. Basically, it defines a is-a relationship. So a simple example would be like this.
+
+Let's say we have some class called Animal. Then we can have a subclass called Dog that inherits from Animal. All Dogs are Animals. Not all Animals are Dog. Anything an Animal can do, a Dog can go and better. So let's say we have these snippets of Java code
+
+~~~
+{}{}
+public class Animal {
+	public int legs;	
+
+	public void move() {
+		System.out.println("Animals move.");
+	}
+
+}
+
+public class Dog extends Animal {
+	public String breed;
+
+	public void move() {
+		System.out.println("Dogs can move too.");
+	}
+
+	public void bark() {
+		System.out.println("Hi I'm a " + breed);
+	}
+
+}
+
+~~~
+
 
 == The Java Compiler and Casting
 
