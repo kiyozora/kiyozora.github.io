@@ -32,6 +32,7 @@ try {
 <div id="toptitle">
 <h1>CS61B-Data Structures, Spring 2015</h1>
 </div>
+<p>This are a series of guides related to CS61B. Some of these come from the mini-lectures that I have done in discussion, others are things I just write on the fly. I am always looking for feedback, so please contact me if you have any advice, comments, concerns, etc. on these guides.</p>
 <h2>Inheritance</h2>
 <p>Java is an object oriented programming language. What does that mean? We have classes, which define a type of structure. We have things called objects, which are basically containers of data. All objects are an instance of some class. They have fields, which contain data and can interact with each other through methods.</p>
 <p>So what is inheritance? Inheritance is a hierarchy of objects essentially. Basically, it defines a is-a relationship. So a simple example would be like this.</p>
@@ -60,6 +61,14 @@ public class Dog extends Animal {
 
 }
 
+</pre></div></div>
+<p>So Dog is a subclass of Animal. It inherits from Animal and has everything that Animal has. Notice how we didn't redeclare the legs field. That doesn't mean that a Dog doesn't have legs. It does because it inherits it. Also we have overridden move in the subclass. That means when you have a Dog, it'll move like how a Dog should move, not how a generic Animal would. Dogs can also bark and have a breed, while Animals cannot. So like I said, Dogs are not only Animals, they are more.</p>
+<p>This is a pretty cursory glance at inheritance. You can get a much better understanding from the Java documentation.</p>
+<h2>Static and Dynamic Type</h2>
+<p>This is a topic that students always have troubles with. What is static and what is dynamic type in Java and what are the implications. Let's say we have this line of code</p>
+<div class="codeblock">
+<div class="code"><pre class="prettyprint">
+	Animal a = new Dog();
 </pre></div></div>
 <h2>The Java Compiler and Casting</h2>
 <h2>Abstract Data Types (ADTs)</h2>
@@ -139,7 +148,7 @@ public class VesselHelper {
 <p>Coming after Tuesday's (3/10) discussion section. Probably the night of. If it's not, please bother me to update.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-03-17 20:03:32 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-03-18 06:53:36 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>
