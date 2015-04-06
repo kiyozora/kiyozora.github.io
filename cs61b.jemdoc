@@ -156,3 +156,15 @@ What's nice about the fact that we're having a heap be a complete binary tree is
 Now getting the min itself is easy. It's just the thing at index 1, the thing at the root. The more interesting operations are inserting something into our heap and removing the min item. To insert something, we'll place is at the next free spot in the tree, at the right most index of the array (not index 0 though). But wait, doesn't this break the heap property? So what shall we do. We fix it of course, by bubbling up the entry until the heap property is maintainged again. That is, for a min-heap, while the key that we just inserted is less than its parent, we'll keep swapping it with its parent. How long will this take? Well in worst case, the item we inserted is the smallest item. That means that it must go all the way to the root. Since it's a complete binary tree, if we have N items in the heap, the height of the tree is $\lg(N)$. Thus insertion runs in $\Theta(\lg(n))$ time in worst case. In best case, we added a really large element to the heap, one that is bigger that its parent, so it will run in $\Theta(1)$ time in best case.
 
 As for removal, we can just get rid of the root. But now we have a hole, so what should we fill it with. Well remember that we want a complete binary tree, so the only thing we can replace it with will be the last element in the tree. Once again we might have violated the heap property. So what will we do? Fix it, this time by bubbling down. While the key we used to replace the removed root is bigger than its child(ren), we will swap it. If it's only bigger than one of its children, we only have one choice to swap it with. If it's bigger than both of its children, then we will swap it with the smaller child. The runtime for this will be like for insertion, for similar reasons. 
+
+I'll insert drawings sooner or later. Go ASCII art!
+
+== A Review of Data Structures
+
+~~~
+{}{table}{dataStructures}
+ADT | Lists | Sets | Maps | Priority Queues ||
+Common and Efficient Implementations | Linked Lists, Array Lists | HashSets, TreeSets | HashMaps, Tree Maps | Heaps (Min/Max) ||
+Use Cases in the Real World | Grocery Lists, Friend Lists on SNS | Class Rosters, Check what albums I have in my k-pop collection | Dictionaries, Table of Contents | To-do lists, Scheduling ||
+Advantages | Items have order | No repeats, quick look up for existance | Mapping of Key-Value with quick look up | Gives priorities, there's a notion of best 
+~~~
