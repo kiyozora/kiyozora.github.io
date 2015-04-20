@@ -161,10 +161,29 @@ I'll insert drawings sooner or later. Go ASCII art!
 
 == A Review of Data Structures
 
+Data structures was probably one of the most influential reasons why I become a CS major. I had an amazing experience when I took my data structures class. One of the questions I get asked a lot is then, what the hell is a data structure.
+
+Well Wikipedia says that it's a way of organizing data so it can be used efficiently. But that's so boring. I think of it like this. We're living in a generation where data is everywhere. There's records on how many hairs you've got on your head to the distance to the farthest star you can see and blah blah, the list is endless. It's an amazing time we're living in. It's also a chaotic time because we have all of this information and what the hell are we going to do with it. Well, that's where data structures come in. It's a way of bring order to the chaos of data that we have so that way it's usable. With the amounts of data we have, making it usable it amazing enough. Making it that it's usable in a way that we get results before the heat death of the universe is a miracle. That's what a data structure is to me, and maybe I just have a tendency to make it more impressive than it actually is.
+
+We've seen a lot of data structures in this class. I've organized it into the table below.
+
 ~~~
 {}{table}{dataStructures}
-ADT | Lists | Sets | Maps | Priority Queues ||
-Common and Efficient Implementations | Linked Lists, Array Lists | HashSets, TreeSets | HashMaps, Tree Maps | Heaps (Min/Max) ||
-Use Cases in the Real World | Grocery Lists, Friend Lists on SNS | Class Rosters, Check what albums I have in my k-pop collection | Dictionaries, Table of Contents | To-do lists, Scheduling ||
-Advantages | Items have order | No repeats, quick look up for existance | Mapping of Key-Value with quick look up | Gives priorities, there's a notion of best 
+ADT | Lists | Sets | Maps | Priority Queues | Graphs ||
+Common and Efficient Implementations | Linked Lists, Array Lists | HashSets, TreeSets | HashMaps, Tree Maps | Heaps (Min/Max) | ||
+Use Cases in the Real World | Grocery Lists, Friend Lists on SNS | Class Rosters, Check what albums I have in my k-pop collection | Dictionaries, Table of Contents | To-do lists, Scheduling | ||
+Advantages | Items have order | No repeats, quick look up for existance | Mapping of Key-Value with quick look up | Gives priorities, there's a notion of best | 
 ~~~
+
+- Lists
+	-- Linked Lists
+	-- Array Lists
+- Sets
+	-- HashSets
+	-- TreeSets
+- Maps
+	-- HashMaps
+	-- TreeMaps
+- Priority Queues
+	-- Heaps
+- Graphs
