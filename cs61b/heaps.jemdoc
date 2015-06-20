@@ -1,35 +1,7 @@
-# jemdoc: menu{MENU}{cs61b.html}
+# jemdoc: menu{CS61B_MENU}{heaps.html}
 # jemdoc: analytics{UA-60586521-1}
-# jemdoc: eqdir{assets/eqs}
-= CS61BL Summer 2015-Data Structures and Programming Methodology
-
-This are a series of guides related to CS61B/CS61BL. Some of these come from the mini-lectures that I have done in discussion, others are things I just write on the fly. I am always looking for feedback, so please contact me if you have any advice, comments, concerns, etc. on these guides.
-
-== Table of Contents
-- [cs61b/inheritance.html Inheritance]
-- [cs61b/generics.html Generics]
-- [cs61b/heaps.html Heaps]
-
-
-== The Java Compiler and Casting
-
-== Abstract Data Types (ADTs)
-
-== Encapsulation
-
-== Java Packages
-
-
-
-== Asymptotics
-
-Coming after Tuesday's (3//10) discussion section. Probably the night of. If it's not, please bother me to update.
-
-== Serializable
-
-== Hashing
-
-== Heaps
+# jemdoc: eqdir{../assets/eqs}
+= Heaps
 
 Sometimes when we are storing things, when we want to get something back, we want something with the highest priority, or maybe the smallest priority. There's this notion that things can be compared and that we want the smallest or biggest thing. The data structure that support this is called a priority queue. As we've seen before queues are a type of disabled list, with FIFO (First in, first out) properites. A priority queue will be thing with the priority we want will get out first, whether it be the smallest or the largest.
 
@@ -40,34 +12,3 @@ What's nice about the fact that we're having a heap be a complete binary tree is
 Now getting the min itself is easy. It's just the thing at index 1, the thing at the root. The more interesting operations are inserting something into our heap and removing the min item. To insert something, we'll place is at the next free spot in the tree, at the right most index of the array (not index 0 though). But wait, doesn't this break the heap property? So what shall we do. We fix it of course, by bubbling up the entry until the heap property is maintainged again. That is, for a min-heap, while the key that we just inserted is less than its parent, we'll keep swapping it with its parent. How long will this take? Well in worst case, the item we inserted is the smallest item. That means that it must go all the way to the root. Since it's a complete binary tree, if we have N items in the heap, the height of the tree is $\lg(N)$. Thus insertion runs in $\Theta(\lg(n))$ time in worst case. In best case, we added a really large element to the heap, one that is bigger that its parent, so it will run in $\Theta(1)$ time in best case.
 
 As for removal, we can just get rid of the root. But now we have a hole, so what should we fill it with. Well remember that we want a complete binary tree, so the only thing we can replace it with will be the last element in the tree. Once again we might have violated the heap property. So what will we do? Fix it, this time by bubbling down. While the key we used to replace the removed root is bigger than its child(ren), we will swap it. If it's only bigger than one of its children, we only have one choice to swap it with. If it's bigger than both of its children, then we will swap it with the smaller child. The runtime for this will be like for insertion, for similar reasons. 
-
-I'll insert drawings sooner or later. Go ASCII art!
-
-== A Review of Data Structures
-
-Data structures was probably one of the most influential reasons why I become a CS major. I had an amazing experience when I took my data structures class. One of the questions I get asked a lot is then, what the hell is a data structure.
-
-Well Wikipedia says that it's a way of organizing data so it can be used efficiently. But that's so boring. I think of it like this. We're living in a generation where data is everywhere. There's records on how many hairs you've got on your head to the distance to the farthest star you can see and blah blah, the list is endless. It's an amazing time we're living in. It's also a chaotic time because we have all of this information and what the hell are we going to do with it. Well, that's where data structures come in. It's a way of bring order to the chaos of data that we have so that way it's usable. With the amounts of data we have, making it usable it amazing enough. Making it that it's usable in a way that we get results before the heat death of the universe is a miracle. That's what a data structure is to me, and maybe I just have a tendency to make it more impressive than it actually is.
-
-We've seen a lot of data structures in this class. I've organized it into the table below.
-
-~~~
-{}{table}{dataStructures}
-ADT | Lists | Sets | Maps | Priority Queues | Graphs ||
-Common and Efficient Implementations | Linked Lists, Array Lists | HashSets, TreeSets | HashMaps, Tree Maps | Heaps (Min/Max) | ||
-Use Cases in the Real World | Grocery Lists, Friend Lists on SNS | Class Rosters, Check what albums I have in my k-pop collection | Dictionaries, Table of Contents | To-do lists, Scheduling | ||
-Advantages | Items have order | No repeats, quick look up for existance | Mapping of Key-Value with quick look up | Gives priorities, there's a notion of best | 
-~~~
-
-- Lists
-	-- Linked Lists
-	-- Array Lists
-- Sets
-	-- HashSets
-	-- TreeSets
-- Maps
-	-- HashMaps
-	-- TreeMaps
-- Priority Queues
-	-- Heaps
-- Graphs
