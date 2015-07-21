@@ -6,6 +6,7 @@
 This are a series of guides related to CS61B/CS61BL. Some of these come from the mini-lectures that I have done in discussion, others are things I just write on the fly. I am always looking for feedback, so please contact me if you have any advice, comments, concerns, etc. on these guides.
 
 == Table of Contents
+- [cs61b/java.html Java]
 - [cs61b/inheritance.html Inheritance]
 - [cs61b/generics.html Generics]
 - [cs61b/heaps.html Heaps]

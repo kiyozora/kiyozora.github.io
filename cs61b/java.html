@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="../assets/css/jemdoc.css" type="text/css" />
+<link href="../assets/css/prettify.css" type="text/css" rel="stylesheet" />
+<title>Java</title>
+<script type="text/javascript" src="../assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-60586521-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Daniel Nguyen</div>
+<div class="menu-item"><a href="../index.html">Home</a></div>
+<div class="menu-item"><a href="../cs61b.html">CS61B</a></div>
+<div class="menu-item"><a href="../Resume.pdf">Resume</a></div>
+<div class="menu-item"><a href="https://github.com/kiyozora">Github</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Java</h1>
+</div>
+<p>In CS61BL, we use Java as our main programming language. For those of you coming from CS61A, CS61AS or E7, you'll see several differences between the language that you used, either Python, Scheme, or Matlab.</p>
+<p>One of the biggest differences between Java and other langauges like Python is that Java is a <b>compiled</b> language. What does that mean? So in Python, you edit a .py file, and then run the program by doing <tt>python script.py</tt> in the terminal. This is not the case for Java. You can't just go <tt>java File.java</tt> in order to run a program. Instead there is a middle step, the compilation step. </p>
+<p>So what is compilation? Compilation is taking the code that you written and translating it into byte code that it readable by a computer. You do this through the compiler. The Java compiler is <tt>javac</tt>. Why go through this step? There are a couple of reasons. One is just the fact that compiled code is faster. Compilation also checks for syntax errors and for correct types. But life is not all sunshine, because you do have to wait for code to compile before you can run it.</p>
+<p>So you edit your .java file, and then you compile it using <tt>javac</tt>. What happens is that <tt>javac</tt> gives you a .class file. If you try to open up a .class file, you will see rubbish. While .java files are meant for humans to read, .class fies are meant for computers to read. Now what should you do with the .class file? How are we actually going to run the program. Well to do that, we run <tt>java File</tt>. Note the difference. I did <b>not</b> do <tt>java File.class</tt>.</p>
+<p>Another difference is that Java is a purely <b>object oriented</b> language. Everything in Java is an Object. This is different from Python which can be both functional and object oriented. And the final major feature of Java is that it is a strongly typed langauge. That means that variables, parameters, and return values must be specified. Why restrict yourself so much? That's because Java is trying to protect itself. It does not assume that you will program well. Thus, it makes you have to be as explicit as possible in order to make sure that you know what you're doing. </p>
+<p>I am going to briefly cover what is an object oriented language. To do so I will define some words that I will use.</p>
+<dl>
+<dt>Object</dt>
+<dd><p>A repository of data. Objects are way to organize data in a way that is usable.</p></dd>
+<dt>Class</dt>
+<dd><p>This is a type of Object. Some people like to call it a blueprint or a template for objects</p></dd>
+<dt>Methods</dt>
+<dd><p>It would be useless if Objects could not interact with each other or change. Methods are the ways that Objects can actually do things. Methods may be connected to an Object or a class.</p></dd>
+<dt>Instance</dt>
+<dd><p>An instance of a class is a specific version of a class. When you call the constructor method of a class, it creates an instance of a class. This might be clearer through an example. Say you had a Dog class. That's a type of thing. Now say that I had a Dog named Mimi, and my sister had a Dog named Fido. Mimi and Fido are instances of the Dog class. They are both Dog objects. Even though Mimi and Fido are both Dogs, they are each their own individual, independent of the other. But they can interact with each other through methods.</p></dd>
+</dl>
+<p>Probably one of the clearest ways for you to understand Java is to see some Java code and write Java code. So let's get into a toy example.</p>
+<div class="codeblock">
+<div class="blocktitle">Dragon.java</div>
+<div class="code"><pre class="prettyprint">
+
+/**
+ * Toy example for CS61B. Represents a Dragon
+ */
+
+public class Dragon {
+
+  /**
+   * wings is how many wings this Dragon has
+   * legs is how many legs this Dragon has
+   * weight is the weight of this Dragon
+   */
+
+  public boolean wings;
+  public int legs;
+  private int weight = 100;
+
+  /**
+   * Constructs a new Dragon.
+   * @param wings whether or not this Dragon has wings
+   * @param legs the number of legs this Dragon has
+   * @param w the weight of this Dragon
+   */
+  public Dragon(boolean wings, int legs, int w) {
+    this.wings = wings;
+    this.legs = legs;
+    weight = w;
+  }
+
+  /**
+   * Constructs a new weightless Asian-style dragon
+   */
+  public Dragon() {
+    this(false, 0, 0);
+  }
+
+  /**
+   * Burns a human to flames
+   */
+  public void breathFire() {
+    System.out.println("Burn human burn!");
+  }
+
+  /**
+   * Burns something to flames
+   * @param name name of the thing to burn
+   */
+  public void breathFire(String name) {
+    System.out.println("Burn " + name + " burn!");
+  }
+
+  /**
+   * Burns down n villages
+   * @param n the number of villages of burn
+   */
+  public void burnDown(int n) {
+    for (int i = 0; i &lt; n; i++) {
+      System.out.println("Burn down village " + i + "!!");
+    }
+  }
+
+  /**
+   * Returns what the Dragon wishes its weight was (they're
+   * very sensitive about it you know)
+   * @return 0, because Dragons like to believe they are all weightless
+   */
+  public int weight() {
+    return 0;
+  }
+
+  public static void main(String[] args) {
+    Dragon d = new Dragon();
+    d.breathFire(args[0]);
+    d.weight = 0;
+  }
+}
+
+
+</pre></div></div>
+<p>So we have here my favorite toy Dragon (because Dogs are overused). There are several things to note here. First I hope that you look at my documentation style. I know that this is not required, but code is meant for other humans to read, so having good documentation is worthwhile. But onto the actual Java things.</p>
+<p>So you'll notice first that my Dragon.java file begins with <tt>public class Dragon</tt>. In Java, because it is object oriented, everything is inside of a class. The class name should be the same as the name of the java file. As in, since have have a Dragon class, this should be in a file called Dragon.java.</p>
+<p>At the top of this file, I have defined my instance variables. These are variables that are unique to each instance. It may be that the instance variables for two instance are the same, but that doesn't mean that they are shared. For example, if I have two Dragons, and they both have weight of 0. But then one Dragon gains weight and now has a weight of 100. That doesn't mean that the weight of my other Dragon has change.</p>
+<p>So far, this looks similar to Python. However, one thing that is different are the keywords <tt>public</tt> and <tt>private</tt>. These are <b>access modifiers</b>. That tells you what can see these variables. <tt>public</tt> means that any class can access it. So let's say that I have a Unicorn class and that Unicorn class is interacting with my Dragon class. The Unicorn can ask my Dragon how many legs it has and if it has wings because those are public variables. <tt>private</tt> means that it is only visible inside the class it is defined in. So if the Unicorn asks my Dragon for its weight, it won't work. Dragon made its weight private, so it won't tell the Unicorn. (Dragons are sensitive about their weight you know) On the other hand, if I was in my Dragon class, I still have access to its weight as seen in the main method above. (Dragons have to stick together)</p>
+<p>Another thing that is different are the types. As I said before, Java is a strongly typed language, which means that you need to tell Java what the type of each variable is.</p>
+<div class="codeblock">
+<div class="blocktitle">In Unicorn.java, this code DOESN'T WORK</div>
+<div class="code"><pre class="prettyprint">
+  public static void main(String[] args) {
+    Dragon d = new Dragon();
+    System.out.println(d.weight);
+  }
+</pre></div></div>
+<p>After the instance variables, I have defined the methods of the Dragon class. Let's disect exactly what this is. So let's take the weight method</p>
+<div class="codeblock">
+<div class="code"><pre class="prettyprint">
+  public int weight() {
+    return 0;
+  }
+</pre></div></div>
+<p>The first line, <tt>public int weight()</tt> is what I will call <b>the method signature</b>. It's composed of again an access modifier. After that is the <b>return type</b> It's, well, what the method returns. In this case, an int. Afterwards is the method names. Then in the parentheses, we have the parameters of the method. In this case, there are no parameters. I will call the method name and its parameters the method <b>prototype</b>. Prototype isn't an official term, but I use it as that is how I was taught. </p>
+<p>int makes sense as a return type, but what about void. You see that in my burnDown method. void is the return type when you aren't returning anythings. So in the burnDown method, you have it printing to standard out, but nothing is actually being returned.</p>
+<p>One thing that you may have noticed is that there are two breathFire methods. What the heck? This is called <b>method overloading</b>. Basically you're allowed to have two methods with the same name as long as they have different parameters, either different parameter types or number of parameters.</p>
+<p>Note that overlaoding does not work when you have just a different return type. That's because when java runs, it won't know which method to pick and it won't know what you want to return.</p>
+<p>Perhaps the most mysterious methods are the first methods, the constructor methods. The constructor is the method that actually creates our objects. The constructor must have the same name as the class, in our case Dragon. Other than that, it is not really special. It doesn't even have a return type! One cool thing though if you see in the second constructor, is the use of the keyword <tt>this</tt>. <tt>this</tt> is used in order to call another constructor in the same class. In this context, this can only be used in a constructor.</p>
+<p>One last note is the main method. main is the method that runs when you run a java program. You notice that its parameter is <tt>String<a href=""></a> args</tt>. I will delay this to a different section</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2015-07-20 20:55:45 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
