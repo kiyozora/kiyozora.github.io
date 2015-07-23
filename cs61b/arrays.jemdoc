@@ -3,4 +3,9 @@
 # jemdoc: eqdir{../assets/eqs}
 = Arrays
 
+Perhaps the first data structure that we see is one that we do not even need to build, and it's the array. Array is a built in type in Java, similar, but not quite like the Python list.
+An array is well an array. It's not an Object, it's an array. An array can hold primitives or references to other types. One caveat, it can only hold the same type. That is, an array of ints can only have ints. *Nothing else*.
+
+ In order to use an array, like everything in java, we must declare it. The declaration for an array is +type[]+. So let's say I wanted to make an array of ints, then I can do something like +int[] arr;+. Now to actually construct the array, we use this syntax. +int[] arr = new int[4];+ So unlike Python lists, Java arrays are fixed length. So +arr+ has a length of 4. And the length of the array that +arr+ is pointing to will always remain 4.
+
 
