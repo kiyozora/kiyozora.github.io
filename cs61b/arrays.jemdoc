@@ -8,4 +8,21 @@ An array is well an array. It's not an Object, it's an array. An array can hold 
 
  In order to use an array, like everything in java, we must declare it. The declaration for an array is +type[]+. So let's say I wanted to make an array of ints, then I can do something like +int[] arr;+. Now to actually construct the array, we use this syntax. +int[] arr = new int[4];+ So unlike Python lists, Java arrays are fixed length. So +arr+ has a length of 4. And the length of the array that +arr+ is pointing to will always remain 4.
 
+Now, we know how to make arrays, and you can certainly now use it. If you made it, you know exactly how long it is, and you can index into it and get everything. But what if someone just passed in an array? You have no guarantees, and if you try and index outside of the length of the array, you'll get an IndexOutOfBoundsException. Basically, you tried to get at something that's not there.
 
+So let's look at a method that does some array processing.
+
+~~~
+{Array Processing in Java with a while loop}{}
+  public void process(String[] arr) {
+    int i = 0;
+    while (i < arr.length) {
+      System.out.println(arr[i]);
+      i++;
+    }
+  }
+~~~
+
+So what we have here is a while loop, and it will essentially keep incrementing i as long as it's less than the length of the array, which we got by accessing the array's length field. You have probably seen while loops before in CS61A. One notation that you might have not seen is the \+\+ operator. What it does is basically increment the variable i by 1. Java added it since it is such a common operation. It also has a sister operator, --. There are some crazy things that you can do with these operators, but for your sanity, I suggest only using it to increment.
+
+Now this type of architecture, iterator through something is so common that Java adds an even more concise way of coding it up, because making 
