@@ -154,7 +154,7 @@ One last note is the main method. main is the method that runs when you run a ja
 
 For reference: Dragon.java as implemented in Python3
 
-A note about Java syntax vs. Python syntax: I have touched on the biggest features of Java above. I did not really talk about minor syntax details. For that, compare Dragon.java to Dragon.py. Note that while Python uses spacing and indenting to separate suites and statements, Java uses curly braces and semicolons. Java does not care about spacing. You could write it all in one line if you wanted to, and it would still work. But you would probably go crazy from trying to understand your own code. Also note that for conditionals \(if/else\), the parentheses are *not* optional, unlike Python. You also cannot assign multiple things in one line in Java due to the fact that there is no tuple type in Java. 
+A note about Java syntax vs. Python syntax: I have touched on the biggest features of Java above. I did not really talk about minor syntax details. For that, compare Dragon.java to Dragon.py. Note that while Python uses spacing and indenting to separate suites and statements, Java uses curly braces and semicolons. Java does not care about spacing. You could write it all in one line if you wanted to, and it would still work. But you would probably go crazy from trying to understand your own code. Also note that for conditionals (if/else), the parentheses are *not* optional, unlike Python. You also cannot assign multiple things in one line in Java due to the fact that there is no tuple type in Java. 
 
 ~~~
 {Dragon.py}{}
