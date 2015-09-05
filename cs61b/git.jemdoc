@@ -1,3 +1,18 @@
 # jemdoc: menu{CS61B_MENU}{java.html}
 # jemdoc: analytics{UA-60586521-1}
 # jemdoc: eqdir{../assets/eqs}
+= Git for CS61B
+
+A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of gits and want a much more detailed guide, I point you to [http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html Sarah Kim's Git Guide].
+
+== Git Basics
+
+Git is a version control system. It does what that sounds like it does, it keeps different versions of your files. I personally like to think of git as a photographer.
+
+So let's say I had an empty directory like below. When I do +git status+, I can see the current state of this directory as git sees it.
+
+// Insert pictures here
+
+So right now, I haven't done anything yet and the status reflects that. Now let's say I add a file, such as +demo.txt+ If I do +git status+ now, I can see that git tells me that this is an untracked file.
+
+So let's return to my metaphor that git is a photographer. More specifically, it is a photographer that is really afraid of being sued. So it will not take pictures of files that have not signed a waiver. So this signing o
