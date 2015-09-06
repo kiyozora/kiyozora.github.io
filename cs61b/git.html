@@ -53,17 +53,17 @@ try {
 <h2>Git Basics <a name="basics"></a></h2>
 <p>Git is a version control system. It does what that sounds like it does, it keeps different versions of your files. I personally like to think of git as a photographer.</p>
 <p>So let's say I had an empty directory like below. When I do <tt>git status</tt>, I can see the current state of this directory as git sees it.</p>
-<p><i></i> Insert pictures here</p>
+<p><img src="../assets/status.png" alt="status" style="width:1156px;height:256px;"></p>
 <p>So right now, I haven't done anything yet and the status reflects that. Now let's say I add a file, such as <tt>demo.txt</tt> If I do <tt>git status</tt> now, I can see that git tells me that this is an untracked file.</p>
-<p><i></i>Insert pictures here</p>
+<p><img src="../assets/untracked.png" alt="untracked" style="width:1156px;height:390px;"></p>
 <p>So let's return to my metaphor that git is a photographer. More specifically, it is a photographer that is really afraid of being sued. So it will not take pictures of files that have not signed a waiver. So this signing of a waiver is done through <tt>git add</tt>. Every single time you have a new file, you must sign a waiver. The technical term for this is <i>tracking</i>, which is what you see when you do <tt>git status</tt> yet again.</p>
-<p><i></i></p>
+<p><img src="../assets/tracked.png" alt="tracked" style="width:848px;height:356px;"></p>
 <p>Now that I added a file, I can now <i>commit</i>. Think of committing as taking a picture. What git is doing is that it's saving the state of your files as they currently are. But remember, only files that you have added (signed the waiver) before. The command that you will use is <tt>git commit -am MESSAGE</tt>, and you will replace MESSAGE with, well an informative message about what's different between this commit and previous commits. If we go back to my photographer analogy, then these commits are like polaroid pictures, you know the cute ones that have the little sharpie message at the bottom describing it. Same thing. The <tt>-am</tt> are flags for git. The <tt>a</tt> stands for <i>all</i>. Basically all files that you are tracking (files you have added<i></i>signed the waiver.) The <tt>m</tt> stands for message.</p>
-<p><i></i></p>
+<p><img src="../assets/commit.png" alt="commit" style="width:1026px;height:278px;"></p>
 <h2>A Bit More Convoluted <a name="commit"></a></h2>
 <p>The main thing you ever do with git is committing. After all, those are the snapshots/pictures/versions, that you will be dealing with and want out of git. But those are no use if you cannot actually utilize them.</p>
 <p>So first off, you probably want to be able to see all of your pictures. To do that, you should do <tt>git log</tt>. It's the log of all the commits that you have made. Here you can see each commit, its message, and its unique id (the string of letters and numbers after commit). Now is when we can start doing a few fancier things.</p>
-<p><i></i></p>
+<p><img src="../assets/log.png" alt="log" style="width:1152px;height:474px;"></p>
 <p>If we go back to the demo, currently there's only one commit. Let's say that I changed <tt>demo.txt</tt>, and then commited it. Now there are two commits. Now let's say that I want to go back in time. You'll probably do this often when you have projects. You decided to do something risky and it did not work out, but you don't know how much to Ctrl/Command + Z (or maybe you changed so much that you can't even undo enough). That's when git can come in handy.</p>
 <p>There is a command called <tt>git checkout</tt>. Now checkout can do <b>a lot</b> of things. But one of the things that it can do is if you do <tt>git checkout COMMIT_ID</tt>, then you can turn all of your files to the state it was at that commit. That is, you went back in time, and everything looks like when you took that picture.</p>
 <p>Now when this happens, you'll get this message that you're in <i>detached head state</i>. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with <tt>git checkout</tt>. Usually, you can just do <tt>git checkout master</tt>, but <i>*IF YOU ARE IN CS61B FA15<tt></i>, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it </tt>git checkout ASSIGNMENT+, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.</p>
@@ -90,8 +90,9 @@ try {
 <p>So I mentioned before that you can combine realities together. I think this makes a bit more sense if we go back to the photograph analogy. You had two stacks of photographs. You are then going to look at the most recent one in those stacks, and then photoshop them together, so you have a composite photo that represents everything that is either picture.</p>
 <p>You do this with <tt>git merge BRANCH_NAME</tt>. This will combine those two pictures together.</p>
 <p>Now there is a caveat. When you do this, if it so happens that a file exists in both branches, and at the end they are different, you get a <b>merge conflit</b>. You can also think of it like this, as you are photoshopping the pictures together, you see a person. That person is wearing one outfit in one picture, and a different outfit in the other picture. Which outfit should that person be wearing in the final picture? Git will not choose for you. Instead, it will force you to choose, which is the <b>merge conflict</b>.</p>
-<p><i></i></p>
-<p>How do you resolve these? Well, you pick. Git presents you the two options (they're between the &gt;&gt;&gt;&gt;). Pick one, and then commit.</p>
+<p><img src="../assets/merge.png" alt="merge" style="width:1002px;height:172px;"></p>
+<p><img src="../assets/conflict.png" alt="conflict" style="width:448px;height:186px;"></p>
+<p>How do you resolve these? Well, you pick. Git presents you the two options (they're between the &lt;&lt;&lt;&lt;&lt;&lt;&lt;/&gt;&gt;&gt;&gt;). Pick one, and then commit. HEAD stands for the branch you are currently on. The ===== splits between the two versions. The only name after the &gt;&gt;&gt;&gt;&gt; refers to the branch that you tried to merge</p>
 <p><i><b>For CS61B-Fa15</b></i>. You probably will not see these due to the fact that how we set up our branches at least is that since each assignment only exists in one branch, there's no way they can ever conflict.</p>
 <p><i><b>Also for CS61B-Fa15</b></i> If you're really that uncomfortable with the idea of not seeing your files at all times (but you shouldn't), then there is a way to always see them, and that's through always merging the different assignment branches into one <i>master</i> branch. You can do this by doing the following commands</p>
 <p><tt>git checkout -b master Empty</tt>
@@ -124,7 +125,7 @@ try {
 <p>Also remember to do <tt>git status</tt> often, to see what git is actually looking at.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-09-05 19:54:08 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-09-05 20:14:26 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>

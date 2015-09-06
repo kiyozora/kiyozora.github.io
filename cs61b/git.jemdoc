@@ -21,19 +21,19 @@ Git is a version control system. It does what that sounds like it does, it keeps
 
 So let's say I had an empty directory like below. When I do +git status+, I can see the current state of this directory as git sees it.
 
-// Insert pictures here
+{{<img src="../assets/status.png" alt="status" style="width:1156px;height:256px;">}}
 
 So right now, I haven't done anything yet and the status reflects that. Now let's say I add a file, such as +demo.txt+ If I do +git status+ now, I can see that git tells me that this is an untracked file.
 
-//Insert pictures here
+{{<img src="../assets/untracked.png" alt="untracked" style="width:1156px;height:390px;">}}
 
 So let's return to my metaphor that git is a photographer. More specifically, it is a photographer that is really afraid of being sued. So it will not take pictures of files that have not signed a waiver. So this signing of a waiver is done through +git add+. Every single time you have a new file, you must sign a waiver. The technical term for this is /tracking/, which is what you see when you do +git status+ yet again.
 
-//
+{{<img src="../assets/tracked.png" alt="tracked" style="width:848px;height:356px;">}}
 
 Now that I added a file, I can now /commit/. Think of committing as taking a picture. What git is doing is that it's saving the state of your files as they currently are. But remember, only files that you have added (signed the waiver) before. The command that you will use is +git commit -am MESSAGE+, and you will replace MESSAGE with, well an informative message about what's different between this commit and previous commits. If we go back to my photographer analogy, then these commits are like polaroid pictures, you know the cute ones that have the little sharpie message at the bottom describing it. Same thing. The +-am+ are flags for git. The +a+ stands for /all/. Basically all files that you are tracking (files you have added//signed the waiver.) The +m+ stands for message.
 
-//
+{{<img src="../assets/commit.png" alt="commit" style="width:1026px;height:278px;">}}
 
 == A Bit More Convoluted {{<a name="commit"></a>}}
 
@@ -41,7 +41,7 @@ The main thing you ever do with git is committing. After all, those are the snap
 
 So first off, you probably want to be able to see all of your pictures. To do that, you should do +git log+. It's the log of all the commits that you have made. Here you can see each commit, its message, and its unique id (the string of letters and numbers after commit). Now is when we can start doing a few fancier things.
 
-//
+{{<img src="../assets/log.png" alt="log" style="width:1152px;height:474px;">}}
 
 If we go back to the demo, currently there's only one commit. Let's say that I changed +demo.txt+, and then commited it. Now there are two commits. Now let's say that I want to go back in time. You'll probably do this often when you have projects. You decided to do something risky and it did not work out, but you don't know how much to Ctrl\/Command \+ Z (or maybe you changed so much that you can't even undo enough). That's when git can come in handy.
 
@@ -95,9 +95,11 @@ You do this with +git merge BRANCH_NAME+. This will combine those two pictures t
 
 Now there is a caveat. When you do this, if it so happens that a file exists in both branches, and at the end they are different, you get a *merge conflit*. You can also think of it like this, as you are photoshopping the pictures together, you see a person. That person is wearing one outfit in one picture, and a different outfit in the other picture. Which outfit should that person be wearing in the final picture? Git will not choose for you. Instead, it will force you to choose, which is the *merge conflict*.
 
-//
+{{<img src="../assets/merge.png" alt="merge" style="width:1002px;height:172px;">}}
 
-How do you resolve these? Well, you pick. Git presents you the two options (they're between the >>>>). Pick one, and then commit.
+{{<img src="../assets/conflict.png" alt="conflict" style="width:448px;height:186px;">}}
+
+How do you resolve these? Well, you pick. Git presents you the two options (they're between the <<<<<<<\/>>>>). Pick one, and then commit. HEAD stands for the branch you are currently on. The ===== splits between the two versions. The only name after the >>>>> refers to the branch that you tried to merge
 
 /*For CS61B-Fa15*/. You probably will not see these due to the fact that how we set up our branches at least is that since each assignment only exists in one branch, there's no way they can ever conflict.
 
