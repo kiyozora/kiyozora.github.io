@@ -3,7 +3,7 @@
 # jemdoc: eqdir{../assets/eqs}
 = Git for CS61B
 
-A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of gits and want a much more detailed guide, I point you to [http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html Sarah Kim's Git Guide].
+A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of git and want a much more detailed guide, I point you to [http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html Sarah Kim's Git Guide].
 
 == Table of Contents
 
@@ -47,7 +47,7 @@ If we go back to the demo, currently there's only one commit. Let's say that I c
 
 There is a command called +git checkout+. Now checkout can do *a lot* of things. But one of the things that it can do is if you do +git checkout COMMIT_ID+, then you can turn all of your files to the state it was at that commit. That is, you went back in time, and everything looks like when you took that picture.
 
-Now when this happens, you'll get this message that you're in /detached head state/. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with +git checkout+. Usually, you can just do +git checkout master+, but /*IF YOU ARE IN CS61B FA15+/, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it +git checkout ASSIGNMENT+, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.
+Now when this happens, you'll get this message that you're in /detached head state/. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with +git checkout+. Usually, you can just do +git checkout master+, but /*IF YOU ARE IN CS61B FA15*/, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it +git checkout ASSIGNMENT+, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.
 
 Another thing that +git checkout+ can do is that if you are not back in time (i.e. you didn't just checkout a past commit), and you started to edit a file, but you decided that you just want to go back to the state of the last commit, but only for /that specific file/, then you can do +git checkout FILE_NAME+, and it will revert /just that file/ to the state it was of the last commit.
 

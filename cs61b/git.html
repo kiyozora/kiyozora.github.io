@@ -32,7 +32,7 @@ try {
 <div id="toptitle">
 <h1>Git for CS61B</h1>
 </div>
-<p>A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of gits and want a much more detailed guide, I point you to <a href="http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html">Sarah Kim's Git Guide</a>.</p>
+<p>A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of git and want a much more detailed guide, I point you to <a href="http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html">Sarah Kim's Git Guide</a>.</p>
 <h2>Table of Contents</h2>
 <ul>
 <li><p><a href="#basics">Git Basics</a></p>
@@ -66,7 +66,7 @@ try {
 <p><img src="../assets/log.png" alt="log" style="width:1152px;height:474px;"></p>
 <p>If we go back to the demo, currently there's only one commit. Let's say that I changed <tt>demo.txt</tt>, and then commited it. Now there are two commits. Now let's say that I want to go back in time. You'll probably do this often when you have projects. You decided to do something risky and it did not work out, but you don't know how much to Ctrl/Command + Z (or maybe you changed so much that you can't even undo enough). That's when git can come in handy.</p>
 <p>There is a command called <tt>git checkout</tt>. Now checkout can do <b>a lot</b> of things. But one of the things that it can do is if you do <tt>git checkout COMMIT_ID</tt>, then you can turn all of your files to the state it was at that commit. That is, you went back in time, and everything looks like when you took that picture.</p>
-<p>Now when this happens, you'll get this message that you're in <i>detached head state</i>. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with <tt>git checkout</tt>. Usually, you can just do <tt>git checkout master</tt>, but <i>*IF YOU ARE IN CS61B FA15<tt></i>, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it </tt>git checkout ASSIGNMENT+, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.</p>
+<p>Now when this happens, you'll get this message that you're in <i>detached head state</i>. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with <tt>git checkout</tt>. Usually, you can just do <tt>git checkout master</tt>, but <i><b>IF YOU ARE IN CS61B FA15</b></i>, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it <tt>git checkout ASSIGNMENT</tt>, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.</p>
 <p>Another thing that <tt>git checkout</tt> can do is that if you are not back in time (i.e. you didn't just checkout a past commit), and you started to edit a file, but you decided that you just want to go back to the state of the last commit, but only for <i>that specific file</i>, then you can do <tt>git checkout FILE_NAME</tt>, and it will revert <i>just that file</i> to the state it was of the last commit.</p>
 <h2>The Push and Pull <a name="pull"></a></h2>
 <p>So everything I've talked about so far is being done on your local computer. But there are times when you need to communicate with other computers about the state of your files. In the case of CS61B, you'll be doing that when you submit your assignments. In real life when you work in industry, this will be how you share your code amongst your team and collaborate.</p>
@@ -125,7 +125,7 @@ try {
 <p>Also remember to do <tt>git status</tt> often, to see what git is actually looking at.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-09-06 10:58:52 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-09-06 21:22:34 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>
