@@ -76,7 +76,7 @@ try {
 <h2>Tag You're It <a name="tag"></a></h2>
 <p>So this gets its own section because tagging really isn't that complicated of a concept, but it's not exactly a basic thing. What tagging is, is well it's marking a commit, saying that it's special and giving it a special name. This is different from the message that you give each commit because a tag is really bright and bold. You can easily look things up by tags. (When we grade your assignments, we look them up through tags).</p>
 <p>So how do you tag? Well you do <tt>git tag TAG_NAME</tt>. In CS61B, you'll be doing <tt>git tag ASSIGNMENT-VERSION_NO</tt>. This will tag <b>the most recent commit</b>. If you want to tag a different commit than the most recent one (say you changed your mind and you decided that a previous version is better and will get you a higher grade), then do <tt>git tag TAG_NAME COMMIT_ID</tt>, and recall that you can get the commit id through <tt>git log</tt>.</p>
-<p>Now, tags are also special because in order for us to see the tags, you need to explicitly send them to us with <tt>git push &ndash;tags</tt>.</p>
+<p>Now, tags are also special because in order for us to see the tags, you need to explicitly send them to us with <tt>git push --tags</tt>.</p>
 <h2>Branching Into Advanced Stuff <a name="branch"></a></h2>
 <p>I think this is probably the most confusing part of git, so if you're still reading, please bare with me and hopefully it makes sense.</p>
 <p>So what exactly are branches and branching. Well basically they're alternate realities. When you're at a commit, you can branch off into different realities. They all start from one commit, but then they branch off. </p>
@@ -113,7 +113,7 @@ try {
 <p><b>After you've finished</b>, you need to do a final commit and then</p>
 <p><tt>git tag ASSIGNMENT-VERSION_NO</tt>, in order to mark the last commit you made as special, and so we can know to grade it
 <tt>git push</tt> in order to send it to our computers
-<tt>git push &ndash;tags</tt> to send over the tags</p>
+<tt>git push --tags</tt> to send over the tags</p>
 <p><b>To switch between assignments</b>, since we set it up so that you can only see the files for one assignment at a time, do</p>
 <p><tt>git checkout ASSIGNMENT</tt>, after first committing, or else git will not let you (this is to save your work and make sure it doesn't disappear)</p>
 <p><b>Alternatively if you are that paranoid about not seeing files all at a time</b>, do this <b>ONCE</b></p>
@@ -125,7 +125,7 @@ try {
 <p>Also remember to do <tt>git status</tt> often, to see what git is actually looking at.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-09-07 01:38:24 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-09-07 01:44:50 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>
