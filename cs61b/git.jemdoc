@@ -129,7 +129,7 @@ This is really for the sake of CS61B, but I really do hope that you did read all
 *As you're doing the assignment*, you will
 
 +git add FILE+ any NEW FILES that you make and need to keep track of (files that git needs to take a picture of, this is the signing of the waiver)
-+git commit -am MESSAGE+ in order to commit (take a picture) af ALL of the files that you have added (files that are currently track\/files that have signed the waiter), and give that commit a message that /should/ be informative
++git commit -am MESSAGE+ in order to commit (take a picture) af ALL of the files that you have added (files that are currently track\/files that have signed the waiver), and give that commit a message that /should/ be informative
 
 *After you've finished*, you need to do a final commit and then
 
