@@ -123,18 +123,23 @@ This is really for the sake of CS61B, but I really do hope that you did read all
 *Before each assignment*, you will do 
 
 +git fetch shared+ to get the files from our computers to yours (though you can't access them yet).
+
 +git checkout -b ASSIGNMENT shared/ASSIGNMENT+ to actually see the assignment
+
 +git push -u origin+ in order to set a link between the assignment on your computer and our computer so that way you submit to the right place
 
 *As you're doing the assignment*, you will
 
 +git add FILE+ any NEW FILES that you make and need to keep track of (files that git needs to take a picture of, this is the signing of the waiver)
+
 +git commit -am MESSAGE+ in order to commit (take a picture) af ALL of the files that you have added (files that are currently track\/files that have signed the waiver), and give that commit a message that /should/ be informative
 
 *After you've finished*, you need to do a final commit and then
 
 +git tag ASSIGNMENT-VERSION_NO+, in order to mark the last commit you made as special, and so we can know to grade it
+
 +git push+ in order to send it to our computers
+
 +git push -\-tags+ to send over the tags
 
 *To switch between assignments*, since we set it up so that you can only see the files for one assignment at a time, do
@@ -144,9 +149,12 @@ This is really for the sake of CS61B, but I really do hope that you did read all
 *Alternatively if you are that paranoid about not seeing files all at a time*, do this *ONCE*
 
 +git checkout -b master Empty+
+
 +git push -u origin master+
 
 Then before each assignment, do
+
++git fetch shared+
 
 +git merge -m "start ASSIGNMENT" shared/ASSIGNMENT+
 

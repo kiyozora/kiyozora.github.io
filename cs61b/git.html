@@ -104,28 +104,29 @@ try {
 <h2>TLDR <a name="tldr"></a></h2>
 <p>This is really for the sake of CS61B, but I really do hope that you did read all of this. I don't think it's too much personally, but I might be wrong &gt;&lt;</p>
 <p><b>Before each assignment</b>, you will do </p>
-<p><tt>git fetch shared</tt> to get the files from our computers to yours (though you can't access them yet).
-<tt>git checkout -b ASSIGNMENT shared/ASSIGNMENT</tt> to actually see the assignment
-<tt>git push -u origin</tt> in order to set a link between the assignment on your computer and our computer so that way you submit to the right place</p>
+<p><tt>git fetch shared</tt> to get the files from our computers to yours (though you can't access them yet).</p>
+<p><tt>git checkout -b ASSIGNMENT shared/ASSIGNMENT</tt> to actually see the assignment</p>
+<p><tt>git push -u origin</tt> in order to set a link between the assignment on your computer and our computer so that way you submit to the right place</p>
 <p><b>As you're doing the assignment</b>, you will</p>
-<p><tt>git add FILE</tt> any NEW FILES that you make and need to keep track of (files that git needs to take a picture of, this is the signing of the waiver)
-<tt>git commit -am MESSAGE</tt> in order to commit (take a picture) af ALL of the files that you have added (files that are currently track/files that have signed the waiver), and give that commit a message that <i>should</i> be informative</p>
+<p><tt>git add FILE</tt> any NEW FILES that you make and need to keep track of (files that git needs to take a picture of, this is the signing of the waiver)</p>
+<p><tt>git commit -am MESSAGE</tt> in order to commit (take a picture) af ALL of the files that you have added (files that are currently track/files that have signed the waiver), and give that commit a message that <i>should</i> be informative</p>
 <p><b>After you've finished</b>, you need to do a final commit and then</p>
-<p><tt>git tag ASSIGNMENT-VERSION_NO</tt>, in order to mark the last commit you made as special, and so we can know to grade it
-<tt>git push</tt> in order to send it to our computers
-<tt>git push --tags</tt> to send over the tags</p>
+<p><tt>git tag ASSIGNMENT-VERSION_NO</tt>, in order to mark the last commit you made as special, and so we can know to grade it</p>
+<p><tt>git push</tt> in order to send it to our computers</p>
+<p><tt>git push --tags</tt> to send over the tags</p>
 <p><b>To switch between assignments</b>, since we set it up so that you can only see the files for one assignment at a time, do</p>
 <p><tt>git checkout ASSIGNMENT</tt>, after first committing, or else git will not let you (this is to save your work and make sure it doesn't disappear)</p>
 <p><b>Alternatively if you are that paranoid about not seeing files all at a time</b>, do this <b>ONCE</b></p>
-<p><tt>git checkout -b master Empty</tt>
-<tt>git push -u origin master</tt></p>
+<p><tt>git checkout -b master Empty</tt></p>
+<p><tt>git push -u origin master</tt></p>
 <p>Then before each assignment, do</p>
+<p><tt>git fetch shared</tt></p>
 <p><tt>git merge -m &ldquo;start ASSIGNMENT&rdquo; shared/ASSIGNMENT</tt></p>
 <p>You will still commit as you are doing the assignment and submit the same way.</p>
 <p>Also remember to do <tt>git status</tt> often, to see what git is actually looking at.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2015-09-07 01:44:50 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2015-09-08 23:30:24 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 </div>
 </div>
 </td>
