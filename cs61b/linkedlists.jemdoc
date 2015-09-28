@@ -10,3 +10,16 @@ This was a discussion that I was not able to teach due to the fact that it was L
 {}{raw}
 <iframe width="420" height="315" src="https://www.youtube.com/embed/y0ertCUIiKw" frameborder="0" allowfullscreen></iframe>
 ~~~
+
+== The Base for Linked Data Structures-A Node
+The linked list is essentially our first new data structure. Arrays are nice and all, but they do have their limitations. The linked list is the first data structure that we're going to build from scratch. The base of a linked list is the Node. Nodes also make up the base for other data structures include trees and graphs which we'll get to later. The Node class for our basic linked list will look like the following:
+
+~~~
+{Node.java}{}
+public class Node {
+
+  private Object item;
+  private Node tail;
+
+}
+~~~
