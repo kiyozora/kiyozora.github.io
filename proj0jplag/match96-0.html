@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>sub_669742</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>NBody.java</CENTER></H3><HR>
+<PRE>
+<A NAME="0"></A><FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match96-1.html#0',3,'match96-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>public class NBody {
+	public static double readRadius(String file) {
+		In in = new In(file);
+		int numPlanets = in.readInt();
+		double radius = in.readDouble();
+		return radius;
+	}
+
+	public static Planet[] readPlanets(String file) {
+		In in = new In(file);
+<A NAME="1"></A>		int numPlanets = in.readInt();
+		double radius = in.readDouble();</B></FONT>
+		Planet[] planets = new Planet[numPlanets];
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match96-1.html#1',3,'match96-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>		for(int i=0; i&lt;numPlanets; i++) {
+			double xxPos = in.readDouble();
+			double yyPos = in.readDouble();
+			double xxVel = in.readDouble();
+			double yyVel = in.readDouble();
+			double mass = in.readDouble();
+			String img = in.readString();</B></FONT>
+
+			Planet newPlanet = new Planet(xxPos, yyPos, xxVel, yyVel, mass, img);
+			planets[i] = newPlanet;
+		}
+		return planets;
+<A NAME="2"></A>	}
+
+	public static void main(String[] args) {
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match96-1.html#2',3,'match96-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>		double T = Double.parseDouble(args[0]);
+		double dt = Double.parseDouble(args[1]);
+		String filename = args[2];
+		double radius = readRadius(filename);
+		Planet[] planets = readPlanets(filename);
+		/*
+		System.out.println(planets[4].xxPos);
+		System.out.println(planets[0].yyPos);
+		System.out.println(planets[0].xxVel);
+		System.out.println(planets[0].yyVel);
+		System.out.println(planets[0].mass);
+		System.out.println(planets[0].imgFileName);
+		*/
+		StdDraw.setScale(-radius, radius);
+		StdDraw.clear();
+		StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;);
+
+		for(int i=0; i&lt;planets.length; i++) {
+			planets[i].draw();
+<A NAME="3"></A>		}</B></FONT>
+
+		for(double time = 0.0; time &lt; T; time += dt) {
+<FONT color="#6cc417"><A HREF="javascript:ZweiFrames('match96-1.html#3',3,'match96-top.html#3',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>			double[] xForces = new double[planets.length];
+			double[] yForces = new double[planets.length];
+
+			for(int i=0; i&lt;planets.length; i++) {
+				xForces[i] = planets[i].calcNetForceExertedByX(planets);
+				yForces[i] = planets[i].calcNetForceExertedByY(planets);
+			}
+
+			for(int i=0; i&lt;planets.length; i++) {
+				planets[i].update(dt, xForces[i], yForces[i]);
+				//planets[i].draw();
+			}
+
+			StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;);
+			
+			for(int i=0; i&lt;planets.length; i++) {
+				planets[i].draw();
+			}
+			
+<A NAME="4"></A>			StdDraw.show(10);</B></FONT>
+		}
+
+<FONT color="#151b8d"><A HREF="javascript:ZweiFrames('match96-1.html#4',3,'match96-top.html#4',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>		StdOut.printf(&quot;%d\n&quot;, planets.length);
+		StdOut.printf(&quot;%.2e\n&quot;, radius);
+		for (int i = 0; i &lt; planets.length; i++) {
+			StdOut.printf(&quot;%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n&quot;,
+   			planets[i].xxPos, planets[i].yyPos, planets[i].xxVel, planets[i].yyVel, planets[i].mass, planets[i].imgFileName);	
+		}
+	}
+}</B></FONT>
+</PRE>
+<HR>
+<H3><CENTER>Planet.java</CENTER></H3><HR>
+<PRE>
+<A NAME="5"></A><FONT color="#c8c2a7"><A HREF="javascript:ZweiFrames('match96-1.html#5',3,'match96-top.html#5',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>public class Planet{
+	public double xxPos, yyPos, xxVel, yyVel, mass;
+	public String imgFileName;
+	public Planet(double xP, double yP, double xV, double yV, double m, String img) {
+		xxPos = xP;
+		yyPos = yP;
+		xxVel = xV;
+		yyVel = yV;
+		mass = m;
+		imgFileName = img;
+	}
+
+	public Planet(Planet p) {
+		xxPos = p.xxPos;
+		yyPos = p.yyPos;
+		xxVel = p.xxVel;
+		yyVel = p.yyVel;
+		mass = p.mass;
+		imgFileName = p.imgFileName;
+	}
+
+	public double calcDistance(Planet p) {
+		double dx = (this.xxPos - p.xxPos);
+		double dy = (this.yyPos - p.yyPos);
+		return Math.sqrt(dx*dx + dy*dy);
+	}
+<A NAME="6"></A>
+	public double calcForceExertedBy(Planet p) {
+		double G = 6.67e-11;</B></FONT>
+<FONT color="#50ebec"><A HREF="javascript:ZweiFrames('match96-1.html#6',3,'match96-top.html#6',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>		return (G * this.mass * p.mass)/(this.calcDistance(p)*this.calcDistance(p));
+	}
+
+	public double calcForceExertedByX(Planet p) {
+		return this.calcForceExertedBy(p) * ((p.xxPos - this.xxPos)/this.calcDistance(p));
+	}
+
+	public double calcForceExertedByY(Planet p) {
+		return this.calcForceExertedBy(p) * ((p.yyPos - this.yyPos)/this.calcDistance(p));
+	}
+
+	public double calcNetForceExertedByX(Planet[] lst) {
+		double netForce = 0;
+		for(int i = 0; i &lt; lst.length; i++) {
+			Planet planet = lst[i];
+			if (!this.equals(planet)) {
+				netForce += this. calcForceExertedByX(planet);
+			}
+		}
+		return netForce;
+	}
+
+	public double calcNetForceExertedByY(Planet[] lst) {
+		double netForce = 0;
+		for(int i = 0; i &lt; lst.length; i++) {
+			Planet planet = lst[i];
+			if (!this.equals(planet)) {
+				netForce += this. calcForceExertedByY(planet);
+			}
+		}
+		return netForce;
+	}
+
+	public void update(double dt, double fX, double fY) {
+		double xAcceleration = fX/this.mass;
+		double yAcceleration = fY/this.mass;
+		this.xxVel = this.xxVel + (xAcceleration*dt);
+		this.yyVel = this.yyVel + (yAcceleration*dt);
+		this.xxPos = this.xxPos + (this.xxVel*dt);
+		this.yyPos = this.yyPos + (this.yyVel*dt);
+	}
+
+	public void draw() {
+		String imgLocation = &quot;./images/&quot; + this.imgFileName;
+		StdDraw.picture(this.xxPos, this.yyPos, imgLocation);
+	}
+}</B></FONT>
+</PRE>
+</BODY>
+</HTML>

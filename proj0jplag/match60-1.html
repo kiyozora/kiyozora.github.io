@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>sub_657201</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>NBody.java</CENTER></H3><HR>
+<PRE>
+<A NAME="0"></A><FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#0',2,'match60-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>public class NBody {
+  //class that runs the simulation
+  public static double readRadius(String fileNameR) {
+    //returns the radius of the universe
+    In in = new In(fileNameR);
+    int numPlanets = in.readInt();
+    double radius = in.readDouble();
+    return radius;
+  }
+
+  public static Planet[] readPlanets(String fileNameP) {
+    //returns an array of Planets
+    In in = new In(fileNameP);
+    int numPlanets = in.readInt();
+    double radius = in.readDouble();
+
+    Planet[] planets = new Planet[numPlanets]; //create array of planets
+    for (int i=0; i&lt;numPlanets; i++) {
+      double xP = in.readDouble();
+      double yP = in.readDouble();
+      double xV = in.readDouble();
+      double yV = in.readDouble();
+      double m = in.readDouble();
+      String img = in.readString();
+      planets[i] = new Planet(xP, yP, xV, yV, m, img);
+    }
+    return planets;
+  }
+
+  public static void main(String[] args) {</B></FONT>
+<A NAME="1"></A>    //main method for NBody
+    StdAudio.play(&quot;./audio/2001.mid&quot;); //play the theme to 2001: A Space Odyssey
+
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#1',2,'match60-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>    double T = Double.parseDouble(args[0]);
+<A NAME="2"></A>    double dt = Double.parseDouble(args[1]);
+    String filename = args[2];
+    double radius = readRadius(filename);
+    Planet[] planets = readPlanets(filename); //array of planets</B></FONT><FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#2',2,'match60-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>
+
+    StdDraw.setScale(-radius, radius);
+    StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;);
+    for (Planet planet : planets) {
+      planet.draw();
+    }
+
+    double time = 0;
+    while (time &lt; T) {
+      Double[] xForces = new Double[planets.length];
+      Double[] yForces = new Double[planets.length];
+      for (int i=0; i&lt;planets.length; i++) {
+        //calculate net forces, then store in force arrays
+        xForces[i] = planets[i].calcNetForceExertedByX(planets);
+        yForces[i] = planets[i].calcNetForceExertedByY(planets);
+      }
+      for (int i=0; i&lt;planets.length; i++) {
+        //update each planet's position, velocity, and acceleration
+        planets[i].update(dt, xForces[i], yForces[i]);
+      }
+      StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;); //draw background
+      for (Planet planet : planets) {
+        //draw each planet with updates
+        planet.draw();
+      }
+      StdDraw.show(10); //10ms delay
+      time += dt; //increment time
+    }
+    //print out the final state of the universe
+    StdOut.printf(&quot;%d\n&quot;, planets.length);
+    StdOut.printf(&quot;%.2e\n&quot;, radius);
+    for (int i = 0; i &lt; planets.length; i++) {
+      StdOut.printf(&quot;%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n&quot;,
+      planets[i].xxPos, planets[i].yyPos, planets[i].xxVel, planets[i].yyVel,
+      planets[i].mass, planets[i].imgFileName);
+    }
+  }
+}</B></FONT>
+</PRE>
+<HR>
+<H3><CENTER>Planet.java</CENTER></H3><HR>
+<PRE>
+<A NAME="3"></A><FONT color="#6cc417"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#3',2,'match60-top.html#3',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>public class Planet {
+    public double xxPos;
+    public double yyPos;
+    public double xxVel;
+    public double yyVel;
+    public double mass;
+    public String imgFileName;
+
+    public Planet(double xP, double yP, double xV, double yV, double m, String img) {
+      xxPos = xP;
+      yyPos = yP;
+      xxVel = xV;
+      yyVel = yV;
+      mass = m;
+      imgFileName = img;
+    }
+
+    public Planet(Planet p) {
+      //constructs a duplicate of p
+      xxPos = p.xxPos;
+      yyPos = p.yyPos;
+      xxVel = p.xxVel;
+      yyVel = p.yyVel;
+      mass = p.mass;
+      imgFileName = p.imgFileName;
+    }
+
+    public double calcDistance(Planet p) {
+      //returns distance between planets
+      double dx = xxPos - p.xxPos;
+      double dy = yyPos - p.yyPos;
+      return Math.sqrt(dx*dx + dy*dy);
+    }
+<A NAME="4"></A>
+    public double calcForceExertedBy(Planet p) {
+      //returns force exerted by p
+      double g = 6.67 * Math.pow(10, -11);</B></FONT><FONT color="#151b8d"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#4',2,'match60-top.html#4',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>
+      double r = calcDistance(p);
+      return g * mass * p.mass / (r*r);
+    }
+
+    public double calcForceExertedByX(Planet p) {
+      //returns force exerted by p in the X direction
+      double f = calcForceExertedBy(p);
+      double dx = p.xxPos - xxPos;</B></FONT>
+      double r = calcDistance(p);
+      return f * dx / r;
+    }
+
+    public double calcForceExertedByY(Planet p) {
+<A NAME="5"></A>      //returns force exerted by p in the Y direction
+      double f = calcForceExertedBy(p);
+      double dy = p.yyPos - yyPos;
+<FONT color="#c8c2a7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#5',2,'match60-top.html#5',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>      double r = calcDistance(p);
+      return f * dy / r;
+    }
+
+    public double calcNetForceExertedByX(Planet[] allPlanets) {
+      //returns *net* force exerted by p in the X direction
+      double netForceX = 0;
+      for (Planet p : allPlanets) {
+        if (this.equals(p)) {</B></FONT>
+<A NAME="6"></A>          //ignore same planet
+          netForceX += 0;
+        } else {
+<FONT color="#50ebec"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#6',2,'match60-top.html#6',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>          netForceX += calcForceExertedByX(p);
+        }
+      }
+      return netForceX;
+    }
+
+    public double calcNetForceExertedByY(Planet[] allPlanets) {
+      //returns *net* force exerted by p in the Y direction
+      double netForceY = 0;
+      for (Planet p : allPlanets) {
+        if (this.equals(p)) {</B></FONT>
+<A NAME="7"></A>          //ignore same planet
+          netForceY += 0;
+        } else {
+<FONT color="#c58917"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match60-0.html#7',2,'match60-top.html#7',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>          netForceY += calcForceExertedByY(p);
+        }
+      }
+      return netForceY;
+    }
+
+    public void update(double dt, double fX, double fY) {
+      //calculates new velocity and position after dt
+      double aX = fX / mass;
+      double aY = fY / mass;
+      xxVel = xxVel + dt * aX;
+      yyVel = yyVel + dt * aY;
+      xxPos = xxPos + dt * xxVel;
+      yyPos = yyPos + dt * yyVel;
+    }
+
+    public void draw() {
+      StdDraw.picture(xxPos, yyPos, &quot;./images/&quot;+imgFileName);
+    }
+
+}</B></FONT>
+</PRE>
+</BODY>
+</HTML>

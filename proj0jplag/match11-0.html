@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>sub_668341</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>NBody.java</CENTER></H3><HR>
+<PRE>
+<A NAME="0"></A><FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match11-1.html#0',3,'match11-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>import java.util.Arrays;
+
+public class NBody{ 
+
+	public static double readRadius(String file) {
+
+	In in = new In(file);
+	int N = in.readInt();
+	double R = in.readDouble();
+
+	return R; 
+
+	}
+
+	public static Planet[] readPlanets(String file ){
+	In in = new In(file);
+	int N = in.readInt();
+	double R = in.readDouble();
+	Planet[] planets= new Planet[N];
+	int counter = 0;
+	while(!in.isEmpty() &amp;&amp; counter &lt; N ){
+		double xxPos = in.readDouble();
+	 	double yyPos = in.readDouble();
+	 	double xxVel = in.readDouble();
+	 	double yyVel = in.readDouble();
+		double mass = in.readDouble();
+		String imgFileName = in.readString();
+		planets[counter] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
+		counter++;
+	}
+
+	return planets;
+
+	}
+
+
+	public static void main(String[] args){ 
+	double T = Double.parseDouble(args[0]);
+	double dt = Double.parseDouble(args[1]);
+	String filename = args[2];
+	double radius = readRadius(filename);
+	Planet[] planet_Arr = readPlanets(filename); 
+
+	int n = planet_Arr.length;
+
+	/* draw background*/		
+	StdDraw.setScale(-radius, radius);
+	StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;); 
+
+
+	
+	for(int i = 0 ; i &lt; planet_Arr.length; i++) {
+		planet_Arr[i].draw();
+		
+	}
+	
+
+	double t = 0; 
+	while(t &lt;= T){
+		Double[] xForces = new Double[n]; 
+		Double[] yForces = new Double[n];
+
+		for(int i = 0 ; i &lt; planet_Arr.length; i++) {
+			xForces[i] = planet_Arr[i].calcNetForceExertedByX(planet_Arr);
+			yForces[i] = planet_Arr[i].calcNetForceExertedByY(planet_Arr);
+			
+		}
+
+		for(int z = 0 ; z &lt; planet_Arr.length; z++) {
+			planet_Arr[z].update(dt, xForces[z], yForces[z]);
+		}
+
+		StdDraw.setScale(-radius, radius);
+		StdDraw.picture(0, 0, &quot;./images/starfield.jpg&quot;); 
+
+		for(int x = 0 ; x &lt; planet_Arr.length; x++) {
+			planet_Arr[x].draw();
+
+		}
+
+		StdDraw.show(10);
+		t = t + dt;
+
+	} 
+	
+		StdOut.printf(&quot;%d\n&quot;, planet_Arr.length);
+		StdOut.printf(&quot;%.2e\n&quot;, radius);
+		for (int i = 0; i &lt; planet_Arr.length; i++) {
+			StdOut.printf(&quot;%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n&quot;,
+   			planet_Arr[i].xxPos, planet_Arr[i].yyPos, planet_Arr[i].xxVel, planet_Arr[i].yyVel, planet_Arr[i].mass, planet_Arr[i].imgFileName);	
+}		
+
+
+
+
+	}
+
+
+}</B></FONT>
+</PRE>
+<HR>
+<H3><CENTER>Planet.java</CENTER></H3><HR>
+<PRE>
+<A NAME="1"></A><FONT color="#f63526"><A HREF="javascript:ZweiFrames('match11-1.html#1',3,'match11-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>public class Planet{
+	public double xxPos;
+	public double yyPos;
+	public double xxVel;
+	public double yyVel;
+	public double mass;
+	public String imgFileName;
+
+	public Planet(double xP, double yP, double xV,
+              double yV, double m, String img) {
+		this.xxPos = xP;
+		this.yyPos = yP;
+		this.xxVel = xV;
+		this.yyVel = yV;
+		this.mass = m;
+		this.imgFileName = img;
+
+	}
+
+	public Planet(Planet p){
+		this.xxPos = p.xxPos;
+		this.yyPos = p.yyPos;
+		this.xxVel = p.xxVel;
+		this.yyVel = p.yyVel ;
+		this.mass = p.mass; 
+		this.imgFileName = p.imgFileName; 
+
+	}
+	 
+	/*
+	public double calcForceExertedByX(Planet a){
+	  double dx =  a.xxPos - xxPos;
+	 double dy = a.yyPos - yyPos;
+	 double r = Math.sqrt(dx*dx + dy*dy);
+	 double G = 6.67e-11; 
+	 double f = (G * mass * a.mass) / r*r;
+	 double fx = f * dx / r;
+	 return fx;
+
+	} */
+
+	/*
+	 public double calcForceExertedByY(Planet a){
+	 double dx =  a.xxPos - xxPos;
+	 double dy = a.yyPos - yyPos;
+	 double r = Math.sqrt(dx*dx + dy*dy);
+	 double G = 6.67e-11; 
+	 double f = (G * mass * a.mass) / r*r;
+	 double fy = f * dy / r;
+
+	 return fy;
+
+	} */
+
+	public double calcDistance(Planet a){
+	 double x_dist =  (a.xxPos - xxPos)*(a.xxPos - xxPos);
+	 double y_dist = (a.yyPos - yyPos)*(a.yyPos - yyPos);
+	 double dist = Math.sqrt(x_dist + y_dist);
+
+	 return dist;
+	}
+
+
+	public double calcForceExertedBy(Planet a){
+		double dist = calcDistance(a);
+		double G = 6.67e-11;
+		double force = (G * (mass * a.mass))/ (dist * dist);
+		return force;
+
+	}
+
+	public double calcForceExertedByX(Planet a){
+		double f = calcForceExertedBy(a);
+		double r = calcDistance(a);
+		double x_dist = (a.xxPos - xxPos);
+		double x_force = (f * x_dist)/r;
+		return x_force;
+	}
+
+
+	public double calcForceExertedByY(Planet a){
+		double f = calcForceExertedBy(a);
+		double r = calcDistance(a);
+		double y_dist = (a.yyPos - yyPos);
+		double y_force = (f * y_dist)/r;
+		return y_force;
+	}
+
+
+	public double calcNetForceExertedByX(Planet[] args){
+		double net_force_x = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			if (!this.equals(args[i])){
+				net_force_x = net_force_x + calcForceExertedByX(args[i]);
+			}
+
+
+		}
+
+		return net_force_x; 
+	}
+
+	public double calcNetForceExertedByY(Planet[] args){
+		double net_force_y = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			if (!this.equals(args[i])){
+				net_force_y = net_force_y + calcForceExertedByY(args[i]);
+			}
+		}
+
+		return net_force_y;
+
+	}
+
+
+	public void update(double dt, double fX, double fY){
+		double x_accel = fX/mass;
+		double y_accel = fY/mass;
+		xxVel = xxVel + dt*x_accel;
+		yyVel = yyVel + dt*y_accel;
+		xxPos = xxPos + dt*xxVel;
+		yyPos = yyPos + dt*yyVel;
+
+	}
+
+	public void draw() {
+		StdDraw.picture(xxPos, yyPos, &quot;images/&quot; + imgFileName);
+	}
+
+
+}</B></FONT>
+</PRE>
+</BODY>
+</HTML>

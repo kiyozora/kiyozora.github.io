@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>sub_661176</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>NBody.java</CENTER></H3><HR>
+<PRE>
+<A NAME="0"></A><FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#0',2,'match36-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>public class NBody{
+
+	//only works with static. Why?
+	public static double readRadius(String file_name){
+		In in = new In(file_name);
+
+		int first_item = in.readInt();
+		double radius = in.readDouble();
+
+		return radius;
+
+		//double[] all_Doubles = in.readAllDoubles();
+		//return all_Doubles[1];
+	}
+
+	public static Planet[] readPlanets(String file_name){
+		In in = new In(file_name);
+		int number_planets = in.readInt(); //not most efficient way to skip int and double
+		double radius = in.readDouble();
+		Planet[] planets = new Planet[number_planets];
+		for(int i = 0; i &lt; number_planets; i++) { 
+			double xxPos = in.readDouble();
+			double yyPos = in.readDouble();
+			double xxVel = in.readDouble();
+			double yyVel = in.readDouble();
+			double mass = in.readDouble();
+			String imgFileName = in.readString();
+			planets[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
+		}
+		return planets;
+	}
+
+	public static void main(String[] args){
+		//why is T blue? do we have to have it capital?
+		double T = Double.parseDouble(args[0]);
+		double dt = Double.parseDouble(args[1]);
+		String filename = args[2];
+
+		double radius = readRadius(filename);
+		Planet[] planets = readPlanets(filename);
+
+		StdDraw.setScale(-radius,radius);
+		StdDraw.picture(0,0,&quot;images/starfield.jpg&quot;);
+
+
+		for (int i=0; i &lt; planets.length; i++){
+			planets[i].draw();
+		}
+
+		double time = 0;
+		while (time &lt;= T){
+			double xForces[] = new double[planets.length];
+			double yForces[] = new double[planets.length];
+			for (int i=0; i &lt; planets.length; i++){
+				xForces[i] = planets[i].calcNetForceExertedByX(planets);
+				yForces[i] = planets[i].calcNetForceExertedByY(planets);
+<A NAME="1"></A>			}
+		StdDraw.picture(0,0,&quot;images/starfield.jpg&quot;);</B></FONT>
+
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#1',2,'match36-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		for (int i=0; i &lt; planets.length; i++){
+			planets[i].update(dt, xForces[i], yForces[i]);
+			planets[i].draw();
+		}
+		StdDraw.show(10);
+		time += dt;
+
+		}
+		StdOut.printf(&quot;%d\n&quot;, planets.length);
+		StdOut.printf(&quot;%.2e\n&quot;, radius);
+		for (int i = 0; i &lt; planets.length; i++) {
+			StdOut.printf(&quot;%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n&quot;,
+   			planets[i].xxPos, planets[i].yyPos, planets[i].xxVel, planets[i].yyVel, planets[i].mass, planets[i].imgFileName);	
+		}
+	}
+
+}</B></FONT>
+</PRE>
+<HR>
+<H3><CENTER>Planet.java</CENTER></H3><HR>
+<PRE>
+<A NAME="2"></A><FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#2',2,'match36-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>public class Planet{
+	// initialize instance variables
+	public double xxPos;
+	public double yyPos;
+	public double xxVel;
+	public double yyVel;
+	public double mass;
+	public String imgFileName;
+
+	//First constructor
+	public Planet(double xP, double yP, double xV, double yV, double m, String img){
+		xxPos = xP;
+		yyPos = yP;
+		xxVel = xV;
+		yyVel = yV;
+		mass = m;
+		imgFileName = img;
+	}
+
+	//Second contructor. Makes a copy
+	public Planet(Planet p){
+		/*Not sure what to call the copy. Come back and check
+		*Also check whether this only copies pointer or creates
+		*new object */
+		this.xxPos = p.xxPos;
+		this.yyPos = p.yyPos;
+		this.xxVel = p.xxVel;
+		this.yyVel = p.yyVel;
+		this.mass = p.mass;
+		this.imgFileName = p.imgFileName;
+	}
+
+	public double calcDistance(Planet p){
+		double x_dist = this.xxPos - p.xxPos;
+		double y_dist = this.yyPos - p.yyPos;
+		return Math.sqrt(x_dist*x_dist + y_dist*y_dist);
+	}
+
+<A NAME="3"></A>	public double calcForceExertedBy(Planet p){
+		double m1 = this.mass;</B></FONT>
+		double m2 = p.mass;
+<FONT color="#6cc417"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#3',2,'match36-top.html#3',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		double g = 6.67 * .00000000001;
+		double r = this.calcDistance(p);
+		return (g * m1 * m2) / (r * r);
+	}
+
+	public double calcForceExertedByX(Planet p){
+		double x_dist =  p.xxPos - this.xxPos;</B></FONT>
+		double f = this.calcForceExertedBy(p);
+		return f * x_dist / this.calcDistance(p);
+	}
+	public double calcForceExertedByY(Planet p){
+<A NAME="4"></A>		double y_dist = p.yyPos - this.yyPos;
+		double f = this.calcForceExertedBy(p);
+		return f * y_dist / this.calcDistance(p);
+<FONT color="#151b8d"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#4',2,'match36-top.html#4',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	}
+
+	public double calcNetForceExertedByX(Planet[] allPlanets) {
+		double x = 0.0;
+		for(int i = 0; i &lt; allPlanets.length; i++) {
+			if(!allPlanets[i].equals(this)){
+				x += this.calcForceExertedByX(allPlanets[i]);
+			}
+		}
+		return x;
+		
+	}
+
+	public double calcNetForceExertedByY(Planet[] allPlanets) {
+		double y = 0.0;
+		for(int i = 0; i &lt; allPlanets.length; i++) {
+			if(!allPlanets[i].equals(this)){
+				y += this.calcForceExertedByY(allPlanets[i]);
+			}
+		}
+		return y;
+		
+	}
+	public void update(double dt, double x_f, double y_f) {
+<A NAME="5"></A>		double m = this.mass;
+		double a_x = x_f / m; </B></FONT>
+		double a_y = y_f / m;
+<FONT color="#c8c2a7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match36-0.html#5',2,'match36-top.html#5',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		this.xxVel = this.xxVel + dt * a_x;
+		this.yyVel = this.yyVel + dt * a_y;
+		this.xxPos = this.xxPos + dt * this.xxVel;
+		this.yyPos = this.yyPos + dt * this.yyVel;
+	}
+
+	public void draw(){
+		StdDraw.picture(this.xxPos, this.yyPos, &quot;images/&quot; + this.imgFileName);
+	}
+}</B></FONT>
+</PRE>
+</BODY>
+</HTML>
