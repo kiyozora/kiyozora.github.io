@@ -124,7 +124,7 @@ This is really for the sake of CS61B, but I really do hope that you did read all
 
 +git fetch shared+ to get the files from our computers to yours (though you can't access them yet).
 
-+git checkout -b ASSIGNMENT shared/ASSIGNMENT+ to actually see the assignment
++git merge shared/ASSIGNMENT -m "Get ASSIGNMENT skeleton"+ to actually see the assignment
 
 +git push -u origin+ in order to set a link between the assignment on your computer and our computer so that way you submit to the right place
 
