@@ -117,7 +117,7 @@ Now, a lot of the times, you will deal with multidimensional arrays that are eve
 {Making a triangular 2D array}{}
 int[][] arr = new int[5][];
 for (int i = 0; i < 5; i++) {
-  arr[i] = new int[i];
+  arr[i] = new int[i + 1];
 }
 ~~~
 
