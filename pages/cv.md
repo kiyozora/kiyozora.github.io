@@ -8,7 +8,6 @@ description: "Curriculum Vitae / Resume"
 tags:
   - cv
   - resume
-  - "foo boo"
 comments: false
 imagesummary: foo.png
 modified: "2016-02-13"
