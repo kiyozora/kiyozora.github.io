@@ -1,4 +1,0 @@
-AuthType Basic  
-AuthName "restricted area"  
-AuthUserFile /Users/danielnguyen/Dev/kiyozora.github.io/proj0jplag/.htpasswd  
-require valid-user
