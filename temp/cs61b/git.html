@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="../assets/css/jemdoc.css" type="text/css" />
+<link href="../assets/css/prettify.css" type="text/css" rel="stylesheet" />
+<title>Git for CS61B</title>
+<script type="text/javascript" src="../assets/js/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-60586521-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Daniel Nguyen</div>
+<div class="menu-item"><a href="../index.html">Home</a></div>
+<div class="menu-item"><a href="../cs61b.html">CS61B</a></div>
+<div class="menu-item"><a href="../Resume.pdf">Resume</a></div>
+<div class="menu-item"><a href="https://github.com/kiyozora">Github</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Git for CS61B</h1>
+</div>
+<p>A disclaimer before you read this. This note is for the purpose of git as used in CS61B and how I personally use git. I will graze over some of the finer details of git at the beginning. If you understand the basic of git and want a much more detailed guide, I point you to <a href="http://berkeley-cs61b.github.io/public_html/materials/guides/using-git.html">Sarah Kim's Git Guide</a>.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><p><a href="#basics">Git Basics</a></p>
+</li>
+<li><p><a href="#commit">A Bit More Convoluted</a></p>
+</li>
+<li><p><a href="#pull">The Push and Pull</a></p>
+</li>
+<li><p><a href="#tag">Tag You're It</a></p>
+</li>
+<li><p><a href="#branch">Branching Into Advanced Stuff</a></p>
+</li>
+<li><p><a href="#merge">Merging Realities Together</a></p>
+</li>
+<li><p><a href="#tldr">TLDR</a></p>
+</li>
+</ul>
+<h2>Git Basics <a name="basics"></a></h2>
+<p>Git is a version control system. It does what that sounds like it does, it keeps different versions of your files. I personally like to think of git as a photographer.</p>
+<p>So let's say I had an empty directory like below. When I do <tt>git status</tt>, I can see the current state of this directory as git sees it.</p>
+<p><img src="../assets/status.png" alt="status" style="width:1156px;height:256px;"></p>
+<p>So right now, I haven't done anything yet and the status reflects that. Now let's say I add a file, such as <tt>demo.txt</tt> If I do <tt>git status</tt> now, I can see that git tells me that this is an untracked file.</p>
+<p><img src="../assets/untracked.png" alt="untracked" style="width:1156px;height:390px;"></p>
+<p>So let's return to my metaphor that git is a photographer. More specifically, it is a photographer that is really afraid of being sued. So it will not take pictures of files that have not signed a waiver. So this signing of a waiver is done through <tt>git add</tt>. Every single time you have a new file, you must sign a waiver. The technical term for this is <i>tracking</i>, which is what you see when you do <tt>git status</tt> yet again.</p>
+<p><img src="../assets/tracked.png" alt="tracked" style="width:848px;height:356px;"></p>
+<p>Now that I added a file, I can now <i>commit</i>. Think of committing as taking a picture. What git is doing is that it's saving the state of your files as they currently are. But remember, only files that you have added (signed the waiver) before. The command that you will use is <tt>git commit -am MESSAGE</tt>, and you will replace MESSAGE with, well an informative message about what's different between this commit and previous commits. If we go back to my photographer analogy, then these commits are like polaroid pictures, you know the cute ones that have the little sharpie message at the bottom describing it. Same thing. The <tt>-am</tt> are flags for git. The <tt>a</tt> stands for <i>all</i>. Basically all files that you are tracking (files you have added<i></i>signed the waiver.) The <tt>m</tt> stands for message.</p>
+<p><img src="../assets/commit.png" alt="commit" style="width:1026px;height:278px;"></p>
+<h2>A Bit More Convoluted <a name="commit"></a></h2>
+<p>The main thing you ever do with git is committing. After all, those are the snapshots/pictures/versions, that you will be dealing with and want out of git. But those are no use if you cannot actually utilize them.</p>
+<p>So first off, you probably want to be able to see all of your pictures. To do that, you should do <tt>git log</tt>. It's the log of all the commits that you have made. Here you can see each commit, its message, and its unique id (the string of letters and numbers after commit). Now is when we can start doing a few fancier things.</p>
+<p><img src="../assets/log.png" alt="log" style="width:1152px;height:474px;"></p>
+<p>If we go back to the demo, currently there's only one commit. Let's say that I changed <tt>demo.txt</tt>, and then commited it. Now there are two commits. Now let's say that I want to go back in time. You'll probably do this often when you have projects. You decided to do something risky and it did not work out, but you don't know how much to Ctrl/Command + Z (or maybe you changed so much that you can't even undo enough). That's when git can come in handy.</p>
+<p>There is a command called <tt>git checkout</tt>. Now checkout can do <b>a lot</b> of things. But one of the things that it can do is if you do <tt>git checkout COMMIT_ID</tt>, then you can turn all of your files to the state it was at that commit. That is, you went back in time, and everything looks like when you took that picture.</p>
+<p>Now when this happens, you'll get this message that you're in <i>detached head state</i>. You don't need to worry about what that means. Basically, it means that you can't commit any more. You're in this parallel universe where you're an observer. Basically, when you use this command, just take a look around, copy and then go back to the present (your most recent commit) and then paste it. How do you get back to your most recent commit? Well, again with <tt>git checkout</tt>. Usually, you can just do <tt>git checkout master</tt>, but <i><b>IF YOU ARE IN CS61B FA15</b></i>, this will probably not be what you want to do because of how we set up the structure of your git repository. What you will want to do it <tt>git checkout ASSIGNMENT</tt>, and you'll replace assignment with the name of the current assignment you are working on. Why is it like this? Keep reading and you'll see.</p>
+<p>Another thing that <tt>git checkout</tt> can do is that if you are not back in time (i.e. you didn't just checkout a past commit), and you started to edit a file, but you decided that you just want to go back to the state of the last commit, but only for <i>that specific file</i>, then you can do <tt>git checkout FILE_NAME</tt>, and it will revert <i>just that file</i> to the state it was of the last commit.</p>
+<h2>The Push and Pull <a name="pull"></a></h2>
+<p>So everything I've talked about so far is being done on your local computer. But there are times when you need to communicate with other computers about the state of your files. In the case of CS61B, you'll be doing that when you submit your assignments. In real life when you work in industry, this will be how you share your code amongst your team and collaborate.</p>
+<p>This is where the commands <tt>git fetch</tt> and <tt>git push</tt> come in. Git will usually be set up so that way there is a direct line of communication between a remote (a computer that's, well remote), and your local computer. What <tt>git fetch</tt> does is that it will essentially download all of the commits (pictures) from the remote computer onto your local. Now, you won't be able to see all the files yet, but know that they are there. <tt>git push</tt> does the opposite. It sends commits from your computer to the remote computers.</p>
+<p>Why do you need to do this? Well, you're committing (and hopefully reasonably often), but all of these commits are just on your computer. Likewise, we'll be committing too on our end. So in order for you to stay updated with what we got (for CS61B, that's when you need to get an assignment we released), or for us to stay updated with you (when you submit your assignment), you need to do these commands.</p>
+<p><b>Aside for CS61B-Fa15</b>: What you are familiar with is <tt>git fetch shared</tt>. What exactly is shared? It's the name of the folder on our computer that has all of your starter files. So when you fetch from it, you're downloading folders from that folder that we have.</p>
+<h2>Tag You're It <a name="tag"></a></h2>
+<p>So this gets its own section because tagging really isn't that complicated of a concept, but it's not exactly a basic thing. What tagging is, is well it's marking a commit, saying that it's special and giving it a special name. This is different from the message that you give each commit because a tag is really bright and bold. You can easily look things up by tags. (When we grade your assignments, we look them up through tags).</p>
+<p>So how do you tag? Well you do <tt>git tag TAG_NAME</tt>. In CS61B, you'll be doing <tt>git tag ASSIGNMENT-VERSION_NO</tt>. This will tag <b>the most recent commit</b>. If you want to tag a different commit than the most recent one (say you changed your mind and you decided that a previous version is better and will get you a higher grade), then do <tt>git tag TAG_NAME COMMIT_ID</tt>, and recall that you can get the commit id through <tt>git log</tt>.</p>
+<p>Now, tags are also special because in order for us to see the tags, you need to explicitly send them to us with <tt>git push --tags</tt>.</p>
+<h2>Branching Into Advanced Stuff <a name="branch"></a></h2>
+<p>I think this is probably the most confusing part of git, so if you're still reading, please bare with me and hopefully it makes sense.</p>
+<p>So what exactly are branches and branching. Well basically they're alternate realities. When you're at a commit, you can branch off into different realities. They all start from one commit, but then they branch off. </p>
+<p>Perhaps another way of thinking it is that why you branch off, it's like calling another photographer, and having him take a different set of pictures, unbeknownst to the current photographer. So there are two stacks of pictures that exist in parallel.</p>
+<p>Why would you want to do this? Well in industry, when you're working on a project and you want to make a new feature, you don't want to work on the existing code that is being release to the public. What if your new feature breaks something? So instead, branch into an alternate reality, and make the changes there, and then you can bring both realities together when you want to release the feature.</p>
+<p>So how do you branch? Well, there are several ways you can do it. You can do <tt>git branch BRANCH_NAME</tt>. And that will make the branch. However, <i>you stay on your current reality(branch)</i>. Back to the photographer analogy, you hired the second photographer, but you didn't call him yet to tell him to take pictures. How do you switch to the other branch? Yet again with the command <tt>git checkout</tt>. This time however, you'll do <tt>git checkout BRANCH_NAME</tt>. This switched you to the alternate reality (the second photographer is now here). Now when you commit, you'll be committing in this alternate reality (adding to this separate stack of pictures). What if you want to do both steps, making a branch and switching to it, at the same time? Then you can do <tt>git checkout -b BRANCH_NAME</tt>. Hopefully that sounds familiar for those taking CS61B.</p>
+<p>So remember that these are alternate realities, different stacks of pictures. So what happens in one reality might not exist in the other. And your actual files will reflect that. Files that git cares about (files that have been added before/signed the waiver), can seemingly disappear when you switch between branches. <b>DON'T FREAK OUT! THEY'RE STILL THERE!</b> Once you switch between branches again <b>THEY WILL COME BACK</b>.</p>
+<p>Also note that before you can switch branches, you <b>must</b> commit. Git wants to make sure that any work that you are currently doing does not get lost, so it forces you to commit.</p>
+<p><b><i>For CS61B-Fa-15</i></b>. Branching is actually what's happening when you are doing your assignments. Each assignment is its own branch (its own alternate reality). We set it up that way. So when you work on an assignment, you can only see that assignment because it only exists in the branch we set it up in. That's why when you want to work on a different assignment, you must do <tt>git checkout ASSIGNMENT</tt>, because you need to switch to that branch. That's also what <i>shared</i> actually is. It's not a folder, it's a branch on our end.</p>
+<h2>Merging Realities Together <a name="merge"></a></h2>
+<p>So I mentioned before that you can combine realities together. I think this makes a bit more sense if we go back to the photograph analogy. You had two stacks of photographs. You are then going to look at the most recent one in those stacks, and then photoshop them together, so you have a composite photo that represents everything that is either picture.</p>
+<p>You do this with <tt>git merge BRANCH_NAME</tt>. This will combine those two pictures together.</p>
+<p>Now there is a caveat. When you do this, if it so happens that a file exists in both branches, and at the end they are different, you get a <b>merge conflit</b>. You can also think of it like this, as you are photoshopping the pictures together, you see a person. That person is wearing one outfit in one picture, and a different outfit in the other picture. Which outfit should that person be wearing in the final picture? Git will not choose for you. Instead, it will force you to choose, which is the <b>merge conflict</b>.</p>
+<p><img src="../assets/merge.png" alt="merge" style="width:1002px;height:172px;"></p>
+<p><img src="../assets/conflict.png" alt="conflict" style="width:448px;height:186px;"></p>
+<p>How do you resolve these? Well, you pick. Git presents you the two options (they're between the &lt;&lt;&lt;&lt;&lt;&lt;&lt;/&gt;&gt;&gt;&gt;). Pick one, and then commit. HEAD stands for the branch you are currently on. The ===== splits between the two versions. The only name after the &gt;&gt;&gt;&gt;&gt; refers to the branch that you tried to merge</p>
+<p><i><b>For CS61B-Fa15</b></i>. You probably will not see these due to the fact that how we set up our branches at least is that since each assignment only exists in one branch, there's no way they can ever conflict.</p>
+<p><i><b>Also for CS61B-Fa15</b></i> If you're really that uncomfortable with the idea of not seeing your files at all times (but you shouldn't), then there is a way to always see them, and that's through always merging the different assignment branches into one <i>master</i> branch. You can do this by doing the following commands</p>
+<p><tt>git checkout -b master Empty</tt>
+<tt>git push -u origin master</tt></p>
+<p>Do the above <b>ONLY ONCE</b>.</p>
+<p>Then when you want do get another assignment, instead of doing <tt>git fetch shared</tt>, <tt>git checkout -b ASSIGNMENT shared/ASSIGNMENT</tt>, you will do</p>
+<p><tt>git merge -m &ldquo;start ASSIGNMENT&rdquo; shared/ASSIGNMENT</tt></p>
+<p>The choice is up to you.</p>
+<h2>TLDR <a name="tldr"></a></h2>
+<p>This is really for the sake of CS61B, but I really do hope that you did read all of this. I don't think it's too much personally, but I might be wrong &gt;&lt;</p>
+<p><b>Before each assignment</b>, you will do </p>
+<p><tt>git fetch shared</tt> to get the files from our computers to yours (though you can't access them yet).</p>
+<p><tt>git merge shared/ASSIGNMENT -m &ldquo;Get ASSIGNMENT skeleton&rdquo;</tt> to actually see the assignment</p>
+<p><tt>git push -u origin</tt> in order to set a link between the assignment on your computer and our computer so that way you submit to the right place</p>
+<p><b>As you're doing the assignment</b>, you will</p>
+<p><tt>git add FILE</tt> any NEW FILES that you make and need to keep track of (files that git needs to take a picture of, this is the signing of the waiver)</p>
+<p><tt>git commit -am MESSAGE</tt> in order to commit (take a picture) af ALL of the files that you have added (files that are currently track/files that have signed the waiver), and give that commit a message that <i>should</i> be informative</p>
+<p><b>After you've finished</b>, you need to do a final commit and then</p>
+<p><tt>git tag ASSIGNMENT-VERSION_NO</tt>, in order to mark the last commit you made as special, and so we can know to grade it</p>
+<p><tt>git push</tt> in order to send it to our computers</p>
+<p><tt>git push --tags</tt> to send over the tags</p>
+<p><b>To switch between assignments</b>, since we set it up so that you can only see the files for one assignment at a time, do</p>
+<p><tt>git checkout ASSIGNMENT</tt>, after first committing, or else git will not let you (this is to save your work and make sure it doesn't disappear)</p>
+<p><b>Alternatively if you are that paranoid about not seeing files all at a time</b>, do this <b>ONCE</b></p>
+<p><tt>git checkout -b master Empty</tt></p>
+<p><tt>git push -u origin master</tt></p>
+<p>Then before each assignment, do</p>
+<p><tt>git fetch shared</tt></p>
+<p><tt>git merge -m &ldquo;start ASSIGNMENT&rdquo; shared/ASSIGNMENT</tt></p>
+<p>You will still commit as you are doing the assignment and submit the same way.</p>
+<p>Also remember to do <tt>git status</tt> often, to see what git is actually looking at.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2016-09-22 10:02:40 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

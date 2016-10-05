@@ -1,0 +1,202 @@
+# jemdoc: menu{CS61B_MENU}{java.html}
+# jemdoc: analytics{UA-60586521-1}
+# jemdoc: eqdir{../assets/eqs}
+= Java
+
+In CS61BL, we use Java as our main programming language. For those of you coming from CS61A, CS61AS or E7, you'll see several differences between the language that you used, either Python, Scheme, or Matlab.
+
+One of the biggest differences between Java and other langauges like Python is that Java is a *compiled* language. What does that mean? So in Python, you edit a .py file, and then run the program by doing +python script.py+ in the terminal. This is not the case for Java. You can't just go +java File.java+ in order to run a program. Instead there is a middle step, the compilation step. 
+
+So what is compilation? Compilation is taking the code that you written and translating it into byte code that it readable by a computer. You do this through the compiler. The Java compiler is +javac+. Why go through this step? There are a couple of reasons. One is just the fact that compiled code is faster. Compilation also checks for syntax errors and for correct types. But life is not all sunshine, because you do have to wait for code to compile before you can run it.
+
+So you edit your .java file, and then you compile it using +javac+. What happens is that +javac+ gives you a .class file. If you try to open up a .class file, you will see rubbish. While .java files are meant for humans to read, .class fies are meant for computers to read. Now what should you do with the .class file? How are we actually going to run the program. Well to do that, we run +java File+. Note the difference. I did *not* do +java File.class+.
+
+One differenece that occurs because Java is a compiled language is that when you edit a .java file, you *must* recompile your code after you save the changes or else when you run the program, the changes will not show up.
+
+Another difference is that Java is a purely *object oriented* language. Everything in Java is an Object. This is different from Python which can be both functional and object oriented. And the final major feature of Java is that it is a strongly typed langauge. That means that variables, parameters, and return values must be specified. Why restrict yourself so much? That's because Java is trying to protect itself. It does not assume that you will program well. Thus, it makes you have to be as explicit as possible in order to make sure that you know what you're doing. 
+
+I am going to briefly cover what is an object oriented language. To do so I will define some words that I will use.
+
+: {Object} A repository of data. Objects are way to organize data in a way that is usable.
+: {Class} This is a type of Object. Some people like to call it a blueprint or a template for objects
+: {Methods} It would be useless if Objects could not interact with each other or change. Methods are the ways that Objects can actually do things. Methods may be connected to an Object or a class.
+: {Instance} An instance of a class is a specific version of a class. When you call the constructor method of a class, it creates an instance of a class. This might be clearer through an example. Say you had a Dog class. That's a type of thing. Now say that I had a Dog named Mimi, and my sister had a Dog named Fido. Mimi and Fido are instances of the Dog class. They are both Dog objects. Even though Mimi and Fido are both Dogs, they are each their own individual, independent of the other. But they can interact with each other through methods.
+
+Probably one of the clearest ways for you to understand Java is to see some Java code and write Java code. So let's get into a toy example.
+
+~~~
+{Dragon.java}{}
+
+/**
+ * Toy example for CS61B. Represents a Dragon
+ */
+
+public class Dragon {
+
+  /**
+   * wings is how many wings this Dragon has
+   * legs is how many legs this Dragon has
+   * weight is the weight of this Dragon
+   */
+
+  public boolean wings;
+  public int legs;
+  private int weight = 100;
+
+  /**
+   * Constructs a new Dragon.
+   * @param wings whether or not this Dragon has wings
+   * @param legs the number of legs this Dragon has
+   * @param w the weight of this Dragon
+   */
+  public Dragon(boolean wings, int legs, int w) {
+    this.wings = wings;
+    this.legs = legs;
+    weight = w;
+  }
+
+  /**
+   * Constructs a new weightless Asian-style dragon
+   */
+  public Dragon() {
+    this(false, 0, 0);
+  }
+
+  /**
+   * Burns a human to flames
+   */
+  public void breathFire() {
+    System.out.println("Burn human burn!");
+  }
+
+  /**
+   * Burns something to flames
+   * @param name name of the thing to burn
+   */
+  public void breathFire(String name) {
+    System.out.println("Burn " + name + " burn!");
+  }
+
+  /**
+   * Burns down n villages if n is between 1 and 10.
+   * @param n the number of villages of burn
+   */
+  public void burnDown(int n) {
+    if (n > 10) {
+      System.out.println("Too many villages...Too lazy for that");
+    else if (n < 0) {
+      System.out.println("Where are the villages?");
+    else {
+      for (int i = 0; i < n; i++) {
+        System.out.println("Burn down village " + i + "!!");
+      }
+    }
+  }
+
+  /**
+   * Returns what the Dragon wishes its weight was (they're
+   * very sensitive about it you know)
+   * @return 0, because Dragons like to believe they are all weightless
+   */
+  public int weight() {
+    return 0;
+  }
+
+  public static void main(String[] args) {
+    Dragon d = new Dragon();
+    d.breathFire(args[0]);
+    d.weight = 0;
+  }
+}
+
+
+~~~
+
+So we have here my favorite toy Dragon (because Dogs are overused). There are several things to note here. First I hope that you look at my documentation style. Code is meant for other humans to read, so having good documentation is worthwhile. In addition, Prof. Hilfinger uses a style checker, and you msut pass it in order to turn in assignments like your project. So please have good style!!!
+
+But now onto the actual Java things.
+
+So you'll notice first that my Dragon.java file begins with +public class Dragon+. In Java, because it is object oriented, everything is inside of a class. The class name should be the same as the name of the java file. As in, since have have a Dragon class, this should be in a file called Dragon.java.
+
+At the top of this file, I have defined my instance variables. These are variables that are unique to each instance. It may be that the instance variables for two instance are the same, but that doesn't mean that they are shared. For example, if I have two Dragons, and they both have weight of 0. But then one Dragon gains weight and now has a weight of 100. That doesn't mean that the weight of my other Dragon has change.
+
+So far, this looks similar to Python. However, one thing that is different are the keywords +public+ and +private+. These are *access modifiers*. That tells you what can see these variables. +public+ means that any class can access it. So let's say that I have a Unicorn class and that Unicorn class is interacting with my Dragon class. The Unicorn can ask my Dragon how many legs it has and if it has wings because those are public variables. +private+ means that it is only visible inside the class it is defined in. So if the Unicorn asks my Dragon for its weight, it won't work. Dragon made its weight private, so it won't tell the Unicorn. (Dragons are sensitive about their weight you know) On the other hand, if I was in my Dragon class, I still have access to its weight as seen in the main method above. (Dragons have to stick together)
+
+Another thing that is different are the types. As I said before, Java is a strongly typed language, which means that you need to tell Java what the type of each variable is.
+~~~
+{In Unicorn.java, this code DOESN'T WORK}{}
+  public static void main(String[] args) {
+    Dragon d = new Dragon();
+    System.out.println(d.weight);
+  }
+~~~
+
+After the instance variables, I have defined the methods of the Dragon class. Let's disect exactly what this is. So let's take the weight method
+
+~~~
+{}{}
+  public int weight() {
+    return 0;
+  }
+~~~
+
+The first line, +public int weight()+ is what I will call *the method signature*. It's composed of again an access modifier. After that is the *return type* It's, well, what the method returns. In this case, an int. Afterwards is the method names. Then in the parentheses, we have the parameters of the method. In this case, there are no parameters. I will call the method name and its parameters the method *prototype*. Prototype isn't an official term, but I use it as that is how I was taught. 
+
+int makes sense as a return type, but what about void. You see that in my burnDown method. void is the return type when you aren't returning anythings. So in the burnDown method, you have it printing to standard out, but nothing is actually being returned.
+
+One thing that you may have noticed is that there are two breathFire methods. What the heck? This is called *method overloading*. Basically you're allowed to have two methods with the same name as long as they have different parameters, either different parameter types or number of parameters.
+
+Note that overloading does not work when you have just a different return type. That's because when java runs, it won't know which method to pick and it won't know what you want to return.
+
+Perhaps the most mysterious methods are the first methods, the constructor methods. The constructor is the method that actually creates our objects. The constructor must have the same name as the class, in our case Dragon. Other than that, it is not really special. It doesn't even have a return type! One cool thing though if you see in the second constructor, is the use of the keyword +this+. +this+ is used in order to call another constructor in the same class. In this context, this can only be used in a constructor. One of the reasons we do this is because unlike Python, you cannot set default values in Java. But we can achieve the same behavior through overloading.
+
+One last note is the main method. main is the method that runs when you run a java program. You notice that its parameter is +String[] args+. I will delay this to a different section
+
+For reference: Dragon.java as implemented in Python3
+
+A note about Java syntax vs. Python syntax: I have touched on the biggest features of Java above. I did not really talk about minor syntax details. For that, compare Dragon.java to Dragon.py. Note that while Python uses spacing and indenting to separate suites and statements, Java uses curly braces and semicolons. Java does not care about spacing. You could write it all in one line if you wanted to, and it would still work. But you would probably go crazy from trying to understand your own code. Also note that for conditionals (if/else), the parentheses are *not* optional, unlike Python. You also cannot assign multiple things in one line in Java due to the fact that there is no tuple type in Java. 
+
+~~~
+{Dragon.py}{}
+class Dragon:
+	"""
+	 Example for CS61B. Represents a Dragon.
+	"""
+	
+	def __init__(wings=False, legs=0, weight=0):
+   		 """
+      		Constructs a new Dragon. Default is a weight Asian Dragon
+    		"""
+		self.wings = wings
+		self.legs = legs
+		self.weight = weight
+
+	def breathe_fire(name="human"):
+    		"""
+    		Burns something to flames. Default is a human
+    		"""
+		print("Burn {0} burn!".format(name))
+
+	def burn_down(n):
+    		"""
+     		 Burns down n villages if n is between 1 and 10.
+    		"""
+		if n > 10:
+			print("Too many villages... Too lazy for that")
+		elif n < 0:
+			print("Where are the villages?")
+		else:
+			for i in range(n):
+				print("Burn down village {0}!!".format(i))
+
+	def weight():
+    		"""
+      		Returns what the Dragon wishes its weight was (they're
+      		very sensitive about it you know)
+    		"""
+		return 0
+
+d = Dragon()
+d.breathe_fire()
+d.weight = 0
+~~~

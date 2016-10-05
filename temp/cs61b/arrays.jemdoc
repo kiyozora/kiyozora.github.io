@@ -1,0 +1,124 @@
+# jemdoc: menu{CS61B_MENU}{arrays.html}
+# jemdoc: analytics{UA-60586521-1}
+# jemdoc: eqdir{../assets/eqs}
+= Arrays and Loops
+
+== Arrays
+Perhaps the first data structure that we see is one that we do not even need to build, and it's the array. Array is a built in type in Java, similar, but not quite like the Python list.
+
+An array is well an array. It's not an Object, it's an array. An array can hold primitives or references to other types. One caveat, it can only hold the same type. That is, an array of ints can only have ints. *Nothing else*.
+
+ In order to use an array, like everything in java, we must declare it. The declaration for an array is +type\[\]+. So let's say I wanted to make an array of ints, then I can do something like +int\[\] arr;+. Now to actually construct the array, we use this syntax. +int\[\] arr = new int\[4\];+ Unlike Python lists, Java arrays are fixed length. So +arr+ has a length of 4. And the length of the array that +arr+ is pointing to will always remain 4.
+
+If you recall, Python allowed you to make a list literal, that is a list with values already in it. Java lets you do that too. The syntax looks like so
+
+~~~
+{Java array literal}{}
+int[] arr = new int[] {1, 2, 3};
+~~~
+
+You specify the values of the array in curly braces. Now if you are declaring and initializing at the same time, you can actually leave the +new int\[\]+ out. So the following also works
+
+~~~
+{Java array literal when declaring and initializing at same time}{}
+int[] arr = {1,2,3};
+~~~
+
+That's fine, however if I had a method +foo+ that took in an int array, I must include the new int\[\].
+
+~~~
+{This works}{}
+foo(new int[]{1,2,3}); // foo takes in an int array
+~~~
+
+~~~
+{This doesn't}{}
+foo({1,2,3});
+~~~
+
+== Loops
+
+Now, we know how to make arrays, and you can certainly now use it. If you made it, you know exactly how long it is, and you can index into it and get everything. But what if someone just passed in an array? You have no guarantees, and if you try and index outside of the length of the array, you'll get an IndexOutOfBoundsException. Basically, you tried to get at something that's not there.
+
+So let's look at a method that does some array processing.
+
+~~~
+{Array Processing in Java with a while loop}{}
+  public void process(String[] arr) {
+    int i = 0;
+    while (i < arr.length) {
+      System.out.println(arr[i]);
+      i++;
+    }
+  }
+~~~
+
+So what we have here is a while loop, and it will essentially keep incrementing i as long as it's less than the length of the array, which we got by accessing the array's length field. You have probably seen while loops before in CS61A. One notation that you might have not seen is the \+\+ operator. What it does is basically increment the variable i by 1. Java added it since it is such a common operation. It also has a sister operator, --. There are some crazy things that you can do with these operators, but for your sanity, I suggest only using it by itself in its own line to increment.
+
+Now this type of structure, iterating through something, is so common that Java adds an even more concise way of coding it up, because making us type more really is a crime. And that is the for loop.
+
+~~~
+{Array Processing in Java with a for loop}{}
+  public void process(String[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.println(arr[i]);
+    }
+  }
+~~~
+
+This code does the exact same thing as the while loop above, except that the initialization, loop condition, and update are now in one line instead of split across three lines. That's great, it means it takes less time for us to write up the loop.
+
+There is one difference though and that is in the scope of i. If you don't remember what scope is, scope is where you can access a variable. In the while loop processing code, because we initialized i before the while loop, we can still use it after. The scope of i is the entire process method. On the other hand, with the for loop, the scope of i is only in the for loop. That means that you cannot use i outside of it. That means that code like the following will not work.
+
+~~~
+{Example of Invalid Scope}{}
+  public void process(String[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.println(arr[i]);
+    }
+    System.out.println(i);
+  }
+~~~
+
+There is one last way to iterate through an array, and that is what is called an enhance for loop, or a for each loop.
+
+As you saw, the for loop above is a bit different from the for loop you might be familar with from Python. The for each loop however might be more inuitive.
+
+~~~
+{Array Processing Using an enhanced for loop}{}
+  public void process(Stirng[] arr) {
+    for (String s: arr) {
+      System.out.println(s);
+    }
+  }
+~~~
+
+In an enhanced for loop, you have a variable, in this case s, that takes on the values that are stored in the array one at a time. Each iteration of the loop, s updates to the next item. This is exactly like Python's for loop. And as you can see, it's differed from regular Java for loop, where we had an index that is getting incremented.
+
+You can use an enhanced for loop with Objects other than arrays. It just needs something called an +Iterable+. I will save that for yet another note.
+
+== Demystifying main and multidimensional arrays
+
+Wtih this knowledge, you now can understand a bit more about the method signature of Java's main method, +public static void main(String\[\] args)+. As you know now, main takes in an array of Strings. Where exactly do those Strings come from? They come from the command line. When you run a program, say +Foo+, if you type in things after it, Java will turn them into a String array, where spaces delimit each String.
+
+~~~
+{Command Line Arguments}{}
+$ javac -g Foo.java
+$ java Foo bar bazz
+~~~
+
+In the above code, bar and bazz are the command line arguments. So in main, the value of args will be an array, \{"bar", "bazz"\}.
+
+One last thing in this note that I want to mention are multidimensional arrays. Simple put, it's an array of arrays (of arrays of arrays...). For example, a 2D array something you may use often, especially if you are representing board, such as in checkers or chess. To declare a multidimensional array, the syntax is sort of intuitive. A 2D array is declared as so +type\[\]\[\] arr+. We just added another pair of square brackets to show that there is another dimension. As stated before, it's merely an array of arrays.
+
+Now, a lot of the times, you will deal with multidimensional arrays that are even. For example, if I had this, +int\[\]\[\] arr = new int\[2\]\[3\];+. This is a 2 dimensional array, 2 by 3. So +arr.length+ is 2, and then +arr\[0\].length+ is 3. Now there may be times when you don't have multidimensional arrays that are this even. For example, you might have a triangular looking array. The code below creates such a case
+
+~~~
+{Making a triangular 2D array}{}
+int[][] arr = new int[5][];
+for (int i = 0; i < 5; i++) {
+  arr[i] = new int[i + 1];
+}
+~~~
+
+Try and follow the code and *draw* out what the array looks like. Although these cases are probably not common for this class and life in general (I think), knowing they exist and knowing how to deal with them can be very helpful.
