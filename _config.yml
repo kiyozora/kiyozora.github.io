@@ -46,13 +46,13 @@ exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "l
 author:
   name:              Daniel Nguyen
   url:               https://danielnguyen.io/
-  avatar:         jb.jpg
+  avatar:         daniel.jpg
   #email:           
 
 # Owner/author information
 owner:
   name:           Daniel Nguyen
-  avatar:         jb.jpg
+  avatar:         daniel.jpg
   #email:          
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:
@@ -79,6 +79,8 @@ links:
     url: /about/
   - title: <i class="iconside iconm-quill"></i> Blog
     url: /blog/
+  - title: <i class="fa fa-database"></i> CS61B
+    url: /cs61b/
   - title: <i class="fa fa-tags"></i> Tags
     url: /tags/
   - title: <i class="fa fa-archive"></i> Archive
@@ -91,8 +93,8 @@ links:
   # - title: <i class="iconside iconm-twitter"></i> Twitter
   #   url: https://twitter.com/abcd
   #   external: true
-  - title: <i class="iconside iconm-feed2"></i> Feed
-    url: /feed.xml
+  # - title: <i class="iconside iconm-feed2"></i> Feed
+  #   url: /feed.xml
 
 # Google Custom Search:
 #google_search: xyz123abc

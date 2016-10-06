@@ -1,40 +1,14 @@
 ---
 layout: default
 permalink: index.html
-title: Personal Homepage of foo boo
-description: "Blogging on ...."
+title: Personal Homepage of Daniel Nguyen
 ---
 
-## [lanyon-plus](https://github.com/dyndna/lanyon-plus)
+## Welcome to My Little Corner of the Web
 
-Based on Jekyll theme: [Lanyon](http://lanyon.getpoole.com) by [**Mark Otto**](https://github.com/mdo)
+The site is currently going under reconstruction. If you're here, you probably want to know more about me. You should go to my [about page](/about). Or you might be here for my notes on Data Structures that I use for when I teach CS61B at Berkeley. You can see an index of those notes [here](/cs61b). Or on the off chance you're here for my ramblings, then keep scrolling down for my latest posts, or check out the archives or tags in the sidebar.
 
-* add-ons by [Samir Amin](http://sbamin.com)
-* [Site features]({{ site.url}}/disclosure#i-classfa-fa-thumbs-o-up-credits-for-site-featuresi)
-* License: Open sourced under the [MIT license](http://sbamin.com/disclosure/#theme-major-credit--license). 
-
-Maximum four posts on front page where first two posts are featured, and remaining are date sorted.
-
-{% if site.twitter_widget_id %}
-<div class="text-tweets">
-<div class="tweets">
-<a class="twitter-timeline"
-  data-dnt="true"
-  width="600"
-  height="250"
-  href="https://twitter.com/{{ site.owner.twitter }}"
-  data-widget-id="{{ site.twitter_widget_id }}"
-  data-tweet-limit="2"
-  data-chrome="noheader nofooter noborders noscrollbar transparent">
-  Recent Tweets</a>
-</div>
-<script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-</div>
-{% else %}
-Twitter stream will show up here if `twitter_widget_id` is present is `_config.yml`. [Demo](http://sbamin.com)
-{% endif %}
+This site is currently being remodeled to use Jekyll with the Lanyon-Plus theme. Both awesome tools that you should look up when you get the chance.
 
 <div class="posts">
   {% for post in site.categories.featured limit:2 %}

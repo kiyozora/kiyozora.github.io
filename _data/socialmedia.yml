@@ -18,7 +18,7 @@
   class: fa fa-envelope-square
   title: "Reach Us"
 
-- name: RSS
-  url: "/feed.xml"
-  class: fa fa-rss-square
-  title: "Subscribe to RSS"
+# - name: RSS
+#   url: "/feed.xml"
+#   class: fa fa-rss-square
+#   title: "Subscribe to RSS"
