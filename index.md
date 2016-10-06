@@ -8,7 +8,7 @@ title: Personal Homepage of Daniel Nguyen
 
 The site is currently going under reconstruction. If you're here, you probably want to know more about me. You should go to my [about page](/about). Or you might be here for my notes on Data Structures that I use for when I teach CS61B at Berkeley. You can see an index of those notes [here](/cs61b). Or on the off chance you're here for my ramblings, then keep scrolling down for my latest posts, or check out the archives or tags in the sidebar.
 
-This site is currently being remodeled to use Jekyll with the Lanyon-Plus theme. Both awesome tools that you should look up when you get the chance.
+This site is currently being remodeled to use Jekyll with the Lanyon-Plus theme. Both are awesome and you should look them up when you get the chance.
 
 <div class="posts">
   {% for post in site.categories.featured limit:2 %}

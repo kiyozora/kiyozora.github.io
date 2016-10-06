@@ -81,6 +81,8 @@ links:
     url: /blog/
   - title: <i class="fa fa-database"></i> CS61B
     url: /cs61b/
+  - title: <i class="iconside iconm-profile"></i> CV
+    url: /cv/
   - title: <i class="fa fa-tags"></i> Tags
     url: /tags/
   - title: <i class="fa fa-archive"></i> Archive
