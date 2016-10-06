@@ -19,6 +19,7 @@ nofollow: false
 ---
 
 Java is an object oriented programming language. What does that mean? We have classes, which define a type of structure. We have things called objects, which are basically containers of data. All objects are an instance of some class. They have fields, which contain data and can interact with each other through methods.
+<!--more-->
 
 So what is inheritance? Inheritance is a hierarchy of objects essentially. Basically, it defines a is-a relationship. So a simple example would be like this.
 

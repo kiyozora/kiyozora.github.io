@@ -19,8 +19,10 @@ noindex: false
 nofollow: false
 ---
 
-== The Base for Linked Data Structures-A Node
+The Base for Linked Data Structures-A Node
+-------------
 The linked list is essentially our first new data structure. Arrays are nice and all, but they do have their limitations. Probably the most obvous of this is that arrays have a fixed length. If we reach capacity then we're out of luck. Also, if we ever want to add things to the middle of an array based list, then we will have to scooch everything over to the right, and if we were to remove something, we must move it over to the left.
+<!--more-->
 
  The linked list is the first data structure that we're going to build from scratch. The base of a linked list is the Node. Nodes also make up the base for other data structures include trees and graphs which we'll get to later. The Node class for our basic linked list will look like the following:
 
