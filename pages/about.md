@@ -29,7 +29,7 @@ tags:
 </span>
 </div>
 
-I'm Daniel. I'm a software engineer working at Facebook on Feed Integrity. I did my undergraduate studies at UC Berkeley as a triple major in Computer Science, Linguistics, and Japanese (and almost got a Korean minor but missed it by one class ㅠㅠ). During my time at Berkeley, I was the head GSI for CS61B (Data Structures) under Paul Hilfinger and Josh Hug. Additionally, I served as one of the co-instructors for the lab-based version of the class, CS61BL during the [summer 2017](www.cs61bl.org/su17)
+I'm Daniel. I'm a software engineer working at Facebook on Feed Integrity. I did my undergraduate studies at UC Berkeley as a triple major in Computer Science, Linguistics, and Japanese (and almost got a Korean minor but missed it by one class ㅠㅠ). During my time at Berkeley, I was the head GSI for CS61B (Data Structures) under Paul Hilfinger and Josh Hug. Additionally, I served as one of the co-instructors for the lab-based version of the class, CS61BL during [summer 2017](www.cs61bl.org/su17)
 
 My focuses range far and wide. To name just a few in my specific majors:
 
@@ -39,9 +39,12 @@ My focuses range far and wide. To name just a few in my specific majors:
 
 However, above all, I love teaching. I love to be able to connect with other people through teaching. It never ceases to amaze me how much I get out of teaching, both from what I can give to my students, as well as what I get back from them. Honestly, I believe that you never really know something until you've taught it in some form.
 
-    If you give a man a fish and you feed him for a day; teach a man to fish and you feed him for a lifetime.
+    "If you give a man a fish and you feed him for a day;
+    teach a man to fish and you feed him for a lifetime."
 
-    If you want to build a ship, don’t drum up the men and women to gather wood, divide the work, and give orders. Instead, teach them to yearn for the vast and endless sea.
+    "If you want to build a ship, don’t drum up the men
+    and women to gather wood, divide the work, and give orders.
+    Instead, teach them to yearn for the vast and endless sea."
 
 If I have done anything good for society, it was because I was able to instill some sense of love for whatever I was teaching my students.
 
