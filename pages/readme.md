@@ -10,13 +10,13 @@ description: "README for setting up lanyon-plus jekyll theme on github pages or 
 ### Based on Jekyll theme: [Lanyon](http://lanyon.getpoole.com) by [Mark Otto](https://github.com/mdo)
 
 *   add-ons by [Samir B. Amin](https://sbamin.com)
-*   License: Open sourced under the [MIT license](LICENSE.md). 
+*   License: Open sourced under the [MIT license](LICENSE.md).
 
 ### Required edits:
 
 #### _config.yml
 
-*   Edit lines where text string `foo` is present with relevant information. 
+*   Edit lines where text string `foo` is present with relevant information.
 *   Add relevant author and owner information
     *   For proper sidebar, meta info below post title, and footer bar, add at least twitter, google plus info under `owner` and `sidebar` section.
     *   Uncomment and add relevant user names/keys to enable features, e.g., google analytics, disqus comments, twitter widget, google custom search.
@@ -24,7 +24,7 @@ description: "README for setting up lanyon-plus jekyll theme on github pages or 
 #### CNAME
 
 *   Read [Using a custom domain with GitHub Pages](https://help.github.com/articles/using-a-custom-domain-with-github-pages/) for set-up details.
-*   If you are hosting website on domain other than `github.io`, rename `CNAME.sample` file to `CNAME`, and add your custom domain name, e.g., `example.com` (only one domain is allowed), otherwise remove `CNAME` file if you want to host at default `github.io`. 
+*   If you are hosting website on domain other than `github.io`, rename `CNAME.sample` file to `CNAME`, and add your custom domain name, e.g., `example.com` (only one domain is allowed), otherwise remove `CNAME` file if you want to host at default `github.io`.
 *   If you are hosting website on `github.io`, replace `example.com` with `https://<github-username>.github.io/<repository_name>` (for project site) or `https://<github-username>.github.io` (for user site) under `site.url` and `site.urlimg` in `_config.yml` and `_prose.yml` file.
 
 #### .travis.yml
@@ -55,7 +55,7 @@ description: "README for setting up lanyon-plus jekyll theme on github pages or 
 *   `_layouts`
     *   To add/remove/reorder page/post contents, edit `default.html` plus `page.html` or `post.html`.
 *   `_posts`
-    *   Live blog posts goes here with markdown formatted post. File name format must have following date-title format `yyyy-mm-dd-title.md` for jekyll to render blog post correctly. 
+    *   Live blog posts goes here with markdown formatted post. File name format must have following date-title format `yyyy-mm-dd-title.md` for jekyll to render blog post correctly.
     *   YAML sample header shows all available options. Minimal required elements are: layout, title and date. Date tag overrides date given in post file name.
 *   `blog/index.html`
     *   Edit blog title and description.
@@ -79,14 +79,14 @@ example.com/images/icons/android-icon-192x192.png
 *   `syspages/`:
     *   Edit page title and description in YAML front matter.
     *   For web search to work, specify [Google Custom Search Engine](https://cse.google.com) API key for `google_search` variable.
-    *   Tag generation is experimental and dynamic size for tag box may need to be adjusted if you have more than 100 posts with one or two frequently occurring tags. 
+    *   Tag generation is experimental and dynamic size for tag box may need to be adjusted if you have more than 100 posts with one or two frequently occurring tags.
     *   All `{% for ... %}...{% endfor %}` loop operations will increase site build time, and remove such features (tags, meta info, related posts, etc.) under `_includes`, `_layouts` and `syspages` if required.
 *   `pages/contact.md`
     *   Edit page title and description.
     *   Edit address, driving direction url, etc.
 *   `pages/cv.md`
     *   Edit `_config.yml` to add twitter, google plus, linkedin, google scholar, ORCID profile info under owner heading.   
-    *   Add pdf at `{{ site.url }}/cv/cv.pdf` 
+    *   Add pdf at `{{ site.url }}/cv/cv.pdf`
 *   `pages/publications.md`
     *   Add your publications at `/files/mypubs.bib` and `_includes/mypubs.html`. See above under `_includes` for more.
 *   `pages/disclosure.md`

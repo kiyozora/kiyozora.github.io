@@ -4,7 +4,7 @@ permalink: /contact/
 title: Contact
 show_meta: false
 published: true
-description: "Contact example.com"
+description: "Contact Me"
 comments: false
 mathjax: false
 noindex: false
@@ -13,12 +13,10 @@ sitemap:
     changefreq: 'monthly'
     lastmod: 2016-02-13
 tags:
-  - "foo boo"
-  - "driving directions"
-  - address
+  - contact
 ---
 
-| <i class="fa fa-paper-plane">  | dnguyen44 (AT) berkeley.edu | 
+| <i class="fa fa-paper-plane">  | dnguyen44 (AT) berkeley.edu |
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ site.owner.twitter }}" data-size="small" data-dnt="true">Tweet</a> <a href="javascript:window.print()" class="social-icons" title="Printer friendly format"><i class="fa fa-print"></i></a>
 

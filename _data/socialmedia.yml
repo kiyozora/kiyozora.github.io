@@ -13,10 +13,15 @@
   class: fa fa-github-square
   title: Code repository
 
+- name: Instagram
+  url: https://www.instagram.com/kiyozora17/
+  class: fa fa-instagram
+  title: Add me @kiyozora17
+
 - name: Contact
   url: "/contact/"
   class: fa fa-envelope-square
-  title: "Reach Us"
+  title: "Reach Me"
 
 # - name: RSS
 #   url: "/feed.xml"
